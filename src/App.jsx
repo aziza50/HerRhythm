@@ -5,6 +5,7 @@ import HomePage from './pages/HomePage';
 
 function App() {
   const { isAuthenticated, isLoading, logout, user } = useAuth0();
+
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-pink-100 to-purple-100">
@@ -21,18 +22,10 @@ function App() {
   }
 
   return (
-    <div>
-          <p className="text-xl font-semibold text-gray-800">
-            Welcome, {user?.name || user?.email}! 🌸
-          </p>
-          <button 
-            onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}
-            className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition"
-          >
-            Log Out
-          </button>
-      <HomePage />
-      </div>
+    <HomePage 
+      userName={user?.name || user?.email || "friend"} 
+      onLogout={() => logout({ logoutParams: { returnTo: window.location.origin } })}
+    />
   );
 }
 
