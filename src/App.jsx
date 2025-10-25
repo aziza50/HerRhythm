@@ -8,6 +8,7 @@ import { useState } from "react";
 
 function App() {
   const { isAuthenticated, isLoading, logout, user } = useAuth0();
+<<<<<<< HEAD
   const [isNewUser, setIsNewUser] = useState(false);
 
   useEffect(() => {
@@ -19,6 +20,8 @@ function App() {
         });
     }
   }, [isAuthenticated, user]);
+=======
+>>>>>>> e3d94fbdc5adae5c9edb8b7c6db7cf6a2db4a1a1
 
   if (isLoading) {
     return (
@@ -35,11 +38,20 @@ function App() {
     return <LoginPage></LoginPage>;
   }
 
+<<<<<<< HEAD
   if (isNewUser) {
     return <SignUp />;
   }
 
   return <HomePage></HomePage>;
+=======
+  return (
+    <HomePage 
+      userName={user?.name || user?.email || "friend"} 
+      onLogout={() => logout({ logoutParams: { returnTo: window.location.origin } })}
+    />
+  );
+>>>>>>> e3d94fbdc5adae5c9edb8b7c6db7cf6a2db4a1a1
 }
 
 export default App;
