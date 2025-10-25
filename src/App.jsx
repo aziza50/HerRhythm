@@ -1,10 +1,25 @@
-import React from 'react';
-import { useAuth0 } from '@auth0/auth0-react';
-import LoginPage from './pages/LoginPage';
-import HomePage from './pages/HomePage';
+import React from "react";
+import { useAuth0 } from "@auth0/auth0-react";
+import LoginPage from "./pages/LoginPage";
+import HomePage from "./pages/HomePage";
+import { useEffect } from "react";
+import { SignUpPage } from "./pages/SignUpPage";
+import { useState } from "react";
 
 function App() {
   const { isAuthenticated, isLoading, logout, user } = useAuth0();
+  const [isNewUser, setIsNewUser] = useState(false);
+
+  useEffect(() => {
+    if (isAuthenticated && user) {
+      fetch(`/api/users/check?auth0Id=${user.sub}`)
+        .then((res) => res.json())
+        .then((data) => {
+          setIsNewUser(!data.exists);
+        });
+    }
+  }, [isAuthenticated, user]);
+
   if (isLoading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-pink-100 to-purple-100">
@@ -17,23 +32,14 @@ function App() {
   }
 
   if (!isAuthenticated) {
-    return <LoginPage />;
+    return <LoginPage></LoginPage>;
   }
 
-  return (
-    <div>
-          <p className="text-xl font-semibold text-gray-800">
-            Welcome, {user?.name || user?.email}! 🌸
-          </p>
-          <button 
-            onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}
-            className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition"
-          >
-            Log Out
-          </button>
-      <HomePage />
-      </div>
-  );
+  if (isNewUser) {
+    return <SignUp />;
+  }
+
+  return <HomePage></HomePage>;
 }
 
 export default App;
