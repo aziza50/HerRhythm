@@ -1,1 +1,12 @@
 @import "tailwindcss";
+
+/* Ensure Poppins font is available */
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Custom font weight for ExtraBold */
+.font-poppins-extrabold {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 800;
+}
