@@ -17,7 +17,18 @@ function CheckIn({ userName, onNavigate }) {
   const [notes, setNotes] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+<<<<<<< HEAD
   const moodList = ["excited", "happy", "calm", "sad", "anxious"];
+=======
+  const moodOptions = [
+    { emoji: "😄", name: "excited" },
+    { emoji: "😊", name: "happy" },
+    { emoji: "😐", name: "calm" },
+    { emoji: "😞", name: "sad" },
+    { emoji: "😢", name: "anxious" },
+  ];
+
+>>>>>>> fd7da51f89b83e69fe602e0133a14e1a9089c174
   const symptomOptions = ["Cramps", "Headache", "Bloating", "Fatigue", "Acne"];
 
   const toggleSymptom = (symptom) => {
@@ -97,11 +108,11 @@ function CheckIn({ userName, onNavigate }) {
             className="absolute inset-0 w-full h-full object-cover mix-blend-multiply rounded-[64px]"
           />
 
-          <div className="relative z-10 text-center mb-4">
-            <h1 className="font-poppins-extrabold text-3xl text-[#2f2f2f]">
-              how are you feeling today?
+          <div className="relative z-10 text-center mb-8">
+            <h1 className="font-unkempt-bold text-[39px] text-[#2f2f2f] mb-2">
+              How Are You Feeling Today?
             </h1>
-            <p className="text-gray-600">{today}</p>
+            <p className="font-unkempt-regular text-[18px] text-gray-600">{today}</p>
           </div>
 
           <div className="relative z-10 flex gap-6 px-4">
@@ -122,7 +133,7 @@ function CheckIn({ userName, onNavigate }) {
                           : "hover:bg-pink-100"
                       }`}
                     >
-                      {emoji}
+                      {emoji} {/* display only emoji */}
                     </button>
                   ))}
                 </div>
@@ -173,22 +184,22 @@ function CheckIn({ userName, onNavigate }) {
               </div>
 
               {/* Cycle Flow */}
-              <div className="relative bg-white rotate-1 shadow-[0_4px_10px_0_rgba(90,90,90,0.6)] p-3 flex flex-col items-center">
-                <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 w-12 h-4 bg-[#f4e9d8] rotate-2 shadow-md"></div>
-                <h2 className="font-semibold mb-2 text-sm">Cycle Flow</h2>
-                <div className="flex gap-2 justify-center flex-wrap">
+              <div className="bg-white rotate-1 shadow-[0_4px_10px_0_rgba(90,90,90,0.6)] p-3 flex flex-col items-center relative">
+                <div className="absolute -top-3 w-12 h-4 bg-[#f4e9d8] rotate-2 shadow-md"></div>
+                <h2 className="font-semibold text-sm mb-2">Cycle Flow</h2>
+                <div className="flex gap-1 justify-center flex-wrap">
                   {["None", "Spotting", "Light", "Medium", "Heavy"].map(
                     (level) => (
                       <button
                         key={level}
                         onClick={() => setFlow(level)}
                         className={`px-2 py-1 rounded-md transition-all duration-200 font-medium text-xs
-                        ${
-                          flow === level
-                            ? "bg-pink-400 text-white shadow-md"
-                            : "bg-pink-100 text-pink-700 hover:bg-pink-200"
-                        }
-                      `}
+                          ${
+                            flow === level
+                              ? "bg-pink-300 text-white shadow-md"
+                              : "bg-pink-100 text-pink-700 hover:bg-pink-200"
+                          }
+                        `}
                       >
                         {level}
                       </button>
@@ -201,21 +212,36 @@ function CheckIn({ userName, onNavigate }) {
             {/* Right Column: Symptoms & Notes */}
             <div className="flex flex-col gap-4 w-1/2">
               {/* Symptoms */}
+<<<<<<< HEAD
               <div className="relative bg-white rotate-1 shadow-[0_4px_10px_0_rgba(90,90,90,0.6)] p-3 flex flex-col items-center">
                 <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 w-12 h-4 bg-[#f4e9d8] rotate-2 shadow-md"></div>
                 <h2 className="font-semibold mb-2 text-sm">Symptoms</h2>
+=======
+              <div className="bg-white rotate-1 shadow-[0_4px_10px_0_rgba(90,90,90,0.6)] p-3 flex flex-col items-center relative">
+                <div className="absolute -top-3 w-12 h-4 bg-[#f4e9d8] rotate-2 shadow-md"></div>
+                <h2 className="font-semibold text-sm mb-2">Symptoms</h2>
+>>>>>>> fd7da51f89b83e69fe602e0133a14e1a9089c174
                 <div className="flex gap-2 flex-wrap justify-center">
                   {symptomOptions.map((s) => (
                     <button
                       key={s}
                       onClick={() => toggleSymptom(s)}
                       className={`px-2 py-1 rounded-md transition-all duration-200 text-xs
+<<<<<<< HEAD
                       ${
                         symptoms.includes(s)
                           ? "bg-pink-400 text-white shadow-md"
                           : "bg-pink-100 text-pink-700 hover:bg-pink-200"
                       }
                     `}
+=======
+                        ${
+                          symptoms.includes(s)
+                            ? "bg-pink-300 text-white shadow-md"
+                            : "bg-pink-100 text-pink-700 hover:bg-pink-200"
+                        }
+                      `}
+>>>>>>> fd7da51f89b83e69fe602e0133a14e1a9089c174
                     >
                       {s}
                     </button>
@@ -224,11 +250,19 @@ function CheckIn({ userName, onNavigate }) {
               </div>
 
               {/* Notes */}
+<<<<<<< HEAD
               <div className="relative bg-white -rotate-1 shadow-[0_4px_10px_0_rgba(90,90,90,0.6)] p-3 flex flex-col flex-grow">
                 <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 w-12 h-4 bg-[#f4e9d8] rotate-1 shadow-md"></div>
                 <h2 className="font-semibold mb-2 text-sm">Notes</h2>
                 <textarea
                   className="w-full flex-grow p-2 border border-gray-300 rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-pink-400 text-sm"
+=======
+              <div className="bg-white -rotate-1 shadow-[0_4px_10px_0_rgba(90,90,90,0.6)] p-4 flex flex-col relative">
+                <div className="absolute -top-3 w-12 h-4 bg-[#f4e9d8] rotate-1 shadow-md"></div>
+                <h2 className="font-semibold mb-3">Notes</h2>
+                <textarea
+                  className="w-full h-24 p-3 border border-gray-300 rounded-md resize-none"
+>>>>>>> fd7da51f89b83e69fe602e0133a14e1a9089c174
                   value={notes}
                   onChange={(e) => setNotes(e.target.value)}
                   placeholder="Jot down any thoughts..."
