@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import LoginPage from './pages/LoginPage';
 import HomePage from './pages/HomePage';
-import TestHomePage from './pages/TestHomePage';
 
 function App() {
   const { isAuthenticated, isLoading, logout, user } = useAuth0();
-  const [currentPage, setCurrentPage] = useState('home'); // 'home' or 'test'
 
   if (isLoading) {
     return (
@@ -24,40 +22,10 @@ function App() {
   }
 
   return (
-    <div>
-      {/* Navigation buttons */}
-      <div className="fixed top-4 right-4 z-50 flex gap-2">
-        <button
-          onClick={() => setCurrentPage('home')}
-          className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-            currentPage === 'home'
-              ? 'bg-pink-500 text-white'
-              : 'bg-white text-gray-700 hover:bg-gray-100'
-          }`}
-        >
-          Home Page
-        </button>
-        <button
-          onClick={() => setCurrentPage('test')}
-          className={`px-4 py-2 rounded-lg font-medium transition-colors ${
-            currentPage === 'test'
-              ? 'bg-pink-500 text-white'
-              : 'bg-white text-gray-700 hover:bg-gray-100'
-          }`}
-        >
-          Test Home Page
-        </button>
-      </div>
-
-      {currentPage === 'home' ? (
-        <HomePage 
-          userName={user?.name || user?.email || "friend"} 
-          onLogout={() => logout({ logoutParams: { returnTo: window.location.origin } })}
-        />
-      ) : (
-        <TestHomePage />
-      )}
-    </div>
+    <HomePage 
+      userName={user?.name || user?.email || "friend"} 
+      onLogout={() => logout({ logoutParams: { returnTo: window.location.origin } })}
+    />
   );
 }
 

@@ -5,28 +5,8 @@ body {
   font-family: 'Poppins', sans-serif;
 }
 
-/* Custom font weights */
+/* Custom font weight for ExtraBold */
 .font-poppins-extrabold {
   font-family: 'Poppins', sans-serif;
   font-weight: 800;
-}
-
-.font-poppins-bold {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 700;
-}
-
-.font-poppins-medium {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 500;
-}
-
-.font-poppins-regular {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 400;
-}
-
-.font-srisakdi-bold {
-  font-family: 'Srisakdi', cursive;
-  font-weight: 700;
 }
