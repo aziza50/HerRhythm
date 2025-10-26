@@ -36,17 +36,22 @@ function HomePage({ userName, onNavigate }) {
           />
 
           {/* Title - Left Aligned */}
-          <div className="absolute left-[60px] top-[100px] w-[500px] z-20">
-            <p className="font-unkempt-bold text-[32px] leading-tight" style={{textAlign: 'left'}}>
-              Hello {userName?.split(" ")[0] || "Mysha"}, you're in your luteal phase.
+          <div className="absolute left-[90px] top-[70px] w-[500px] z-20">
+            <p className="font-unkempt-bold text-[32px] leading-tight mb-2" style={{textAlign: 'left'}}>
+              Hello {userName?.split(" ")[0] || "Mysha"}, you're in your
+            </p>
+            <p className="font-unkempt-bold text-[48px] leading-tight" style={{textAlign: 'left', color: '#c57770'}}>
+              Luteal Phase.
             </p>
           </div>
 
-          {/* Image Placeholder - Right Side */}
-          <div className="absolute h-[80px] right-[60px] top-[90px] w-[120px] z-20">
-            <div className="w-full h-full bg-gradient-to-br from-pink-300 to-purple-400 rounded-xl flex items-center justify-center shadow-lg border-2 border-pink-200">
-              <span className="text-white font-bold text-2xl">🌙</span>
-            </div>
+          {/* Cat Hearts Image - Top Right */}
+          <div className="absolute h-[240px] right-[7px] top-[7px] w-[360px] z-20">
+            <img 
+              src="/cathearts.png" 
+              alt="Cat with hearts" 
+              className="w-full h-full object-contain"
+            />
           </div>
 
           {/* Figma Design Content - Positioned inside the main frame */}
