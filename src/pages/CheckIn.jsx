@@ -58,7 +58,7 @@ function CheckIn({ userName, onNavigate }) {
 
           <div className="relative z-10 text-center mb-8">
             <h1 className="font-unkempt-bold text-[39px] text-[#2f2f2f] mb-2">
-              how are you feeling today?
+              How Are You Feeling Today?
             </h1>
             <p className="font-unkempt-regular text-[18px] text-gray-600">{today}</p>
           </div>
