@@ -161,34 +161,15 @@ function Profile({ userName, onNavigate }) {
                 <div className="absolute -top-3 w-12 h-4 bg-[#f4e9d8] rotate-1 shadow-md"></div>
                 <h2 className="font-semibold mb-2">Account Actions</h2>
                 <div className="space-y-2">
-                  {isEditing ? (
-                    <>
-                      <button
-                        onClick={handleSaveChanges}
-                        className="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg text-sm"
-                      >
-                        Save Changes
-                      </button>
-                      <button
-                        onClick={handleCancelEdit}
-                        className="w-full bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded-lg text-sm"
-                      >
-                        Cancel
-                      </button>
-                    </>
-                  ) : (
-                    <>
-                      <button
-                        onClick={() => setIsEditing(true)}
-                        className="w-full bg-pink-400 hover:bg-pink-500 text-white font-bold py-2 px-4 rounded-lg text-sm"
-                      >
-                        Edit Profile
-                      </button>
-                      <button className="w-full bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded-lg text-sm">
-                        Export Data
-                      </button>
-                    </>
-                  )}
+                  <button
+                    onClick={() => setIsEditing(true)}
+                    className="w-full bg-pink-400 hover:bg-pink-500 text-white font-bold py-2 px-4 rounded-lg text-sm"
+                  >
+                    Edit Profile
+                  </button>
+                  <button className="w-full bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded-lg text-sm">
+                    Export Data
+                  </button>
                 </div>
               </div>
             </div>
