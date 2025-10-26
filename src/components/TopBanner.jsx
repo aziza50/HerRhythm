@@ -11,12 +11,11 @@ const TopBanner = ({ onNavigate }) => {
     setActiveTab(tab);
     onNavigate?.(tab);
     setDisabled(true);
-    setTimeout(() => setDisabled(false), 1000);
+    setTimeout(() => setDisabled(false), 300); // tiny delay to prevent double-click spam
   };
 
   return (
     <header className="relative w-full z-20 flex flex-col items-center pt-6">
-      {/* Notebook Tabs */}
       <nav className="flex flex-wrap justify-center gap-4 sm:gap-6 mb-4">
         {tabs.map((tab) => (
           <button
@@ -24,14 +23,11 @@ const TopBanner = ({ onNavigate }) => {
             onClick={() => handleClick(tab)}
             disabled={disabled}
             className={`
-              relative px-5 py-1 opacity-90 rounded-t-2xl font-semibold 
-              text-[#4a3b2f] transition-all duration-200 
-              bg-[#fffbe9] border-[#b5d96c] shadow-[0_-4px_6px_rgba(0,0,0,0.25)] border-b-4
-              ${activeTab === tab 
-                ? 'bg-[#fffbe9] border-[#b5d96c]' 
-                : 'bg-[#f4e9d8] border-transparent hover:bg-[#fff5dc]'
-              }
-              ${disabled ? 'opacity-70 cursor-not-allowed' : ''}
+              relative px-5 py-1 rounded-t-2xl font-semibold
+              text-[#4a3b2f] transition-all duration-200
+              bg-[#fffbe9] shadow-[0_-4px_6px_rgba(0,0,0,0.25)]
+              ${activeTab === tab ? 'opacity-100' : 'opacity-90 hover:opacity-100'}
+              ${disabled ? 'cursor-not-allowed' : ''}
             `}
           >
             {tab}
@@ -43,7 +39,7 @@ const TopBanner = ({ onNavigate }) => {
         <button
           onClick={() => handleClick('Profile')}
           className={`
-            bg-[#f4e9d8] px-4 py-2 rounded-full font-medium text-[#4a3b2f] 
+            bg-[#f4e9d8] px-4 py-2 rounded-full font-medium text-[#4a3b2f]
             shadow-md hover:bg-[#fff5dc] transition
           `}
         >
