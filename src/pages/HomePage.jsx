@@ -21,7 +21,7 @@ function HomePage({ userName, onNavigate }) {
         alt="background"
         className="absolute inset-0 w-full h-full object-cover"
       />
-
+<dd></dd>
       <div className="relative z-10 flex flex-col items-center">
         {/* Navigation Banner */}
         <TopBanner onNavigate={onNavigate} />
