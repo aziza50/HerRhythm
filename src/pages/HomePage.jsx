@@ -108,7 +108,7 @@ function HomePage({ userName, onNavigate }) {
 
               {/* Right Side: Cycle Insights Sticky Note */}
               {/* TO ADJUST POSITION: Change 'left-[205px]' and 'top-0' - Shifted 10% left from 228px */}
-              <div className="absolute h-[468px] left-[220px] overflow-clip top-0 w-[557px]">
+              <div className="absolute h-[468px] left-[260px] overflow-clip top-0 w-[557px]">
                 
                 {/* Cycle Insights Sticky Note Background */}
                 {/* TO ADJUST POSITION: Change 'right-0' and 'top-[108px]' */}
