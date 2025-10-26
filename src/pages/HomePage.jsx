@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import TopBanner from "../components/TopBanner";
+import { useAuth0 } from "@auth0/auth0-react";
 
 // Background images
 const bgImage =
@@ -20,6 +21,114 @@ const washiTapeDecoration =
   "https://www.figma.com/api/mcp/asset/7478b2be-3727-4413-b715-1627b8fd7f45";
 
 function HomePage({ userName, onNavigate }) {
+  const { isAuthenticated, user } = useAuth0();
+  const [userData, setUserData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [phase, setPhase] = useState("");
+  const [dayInCycle, setDayInCycle] = useState(0);
+  const [phaseLength, setPhaseLength] = useState(0);
+  const [daysUntilNextPhase, setDaysUntilNextPhase] = useState(0);
+
+  // Phase info mapping
+  const phaseInfo = {
+    menstrual: {
+      symptoms: "Cramping, fatigue, bloating, headaches, lower back pain",
+      hormones:
+        "Estrogen and progesterone are at their lowest levels, triggering menstruation",
+    },
+    follicular: {
+      symptoms:
+        "Increased energy, improved mood, clearer skin, heightened focus",
+      hormones: "Estrogen levels rise, FSH stimulates follicle development",
+    },
+    ovulation: {
+      symptoms:
+        "Peak energy, increased libido, possible ovulation pain, cervical changes",
+      hormones: "Estrogen peaks, LH surge triggers egg release",
+    },
+    luteal: {
+      symptoms:
+        "PMS symptoms (bloating, breast tenderness), increased cravings, moodiness, fatigue",
+      hormones:
+        "Progesterone levels rise, then hormone levels drop before period in preparation for menstruation",
+    },
+  };
+
+  useEffect(() => {
+    if (isAuthenticated && user) {
+      const fetchUser = async () => {
+        try {
+          const response = await fetch(
+            `http://localhost:5001/api/user?auth0Id=${user.sub}`
+          );
+
+          if (!response.ok) throw new Error("User not found");
+
+          const data = await response.json();
+          setUserData(data);
+
+          // Calculate phase and cycle info
+          if (data.last_period_date && data.cycle_length) {
+            const today = new Date();
+            const start = new Date(data.last_period_date);
+
+            const diffTime = today - start;
+            const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+            const currentDay = (diffDays % data.cycle_length) + 1;
+            setDayInCycle(currentDay);
+
+            let currentPhase = "";
+            let avgPhaseLength = 0;
+            let daysUntilNext = 0;
+
+            // Determine phase and calculate days
+            if (currentDay <= 5) {
+              currentPhase = "menstrual";
+              avgPhaseLength = 5;
+              daysUntilNext = 5 - currentDay + 1; // Days until follicular
+            } else if (currentDay < data.cycle_length - 14) {
+              currentPhase = "follicular";
+              avgPhaseLength = data.cycle_length - 19; // cycle_length - (5 menstrual + 14 luteal)
+              daysUntilNext = data.cycle_length - 14 - currentDay; // Days until ovulation
+            } else if (currentDay === data.cycle_length - 14) {
+              currentPhase = "ovulation";
+              avgPhaseLength = 1;
+              daysUntilNext = 1; // Days until luteal
+            } else {
+              currentPhase = "luteal";
+              avgPhaseLength = 14;
+              daysUntilNext = data.cycle_length - currentDay; // Days until period
+            }
+
+            setPhase(currentPhase);
+            setPhaseLength(avgPhaseLength);
+            setDaysUntilNextPhase(daysUntilNext);
+          }
+
+          setLoading(false);
+        } catch (err) {
+          console.error("❌ Error:", err);
+          setLoading(false);
+        }
+      };
+
+      fetchUser();
+    }
+  }, [isAuthenticated, user]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-pink-100 to-purple-100">
+        <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-pink-500"></div>
+      </div>
+    );
+  }
+
+  const displayName =
+    userData?.name?.split(" ")[0] || user?.name?.split(" ")[0] || "friend";
+  const currentPhaseInfo = phaseInfo[phase] || phaseInfo.follicular;
+
   return (
     <div className="relative w-full min-h-screen overflow-hidden">
       {/* Background Image */}
@@ -33,7 +142,7 @@ function HomePage({ userName, onNavigate }) {
         {/* Navigation Banner */}
         <TopBanner onNavigate={onNavigate} />
 
-        {/* Main Content Frame - This is your main white container */}
+        {/* Main Content Frame */}
         <div className="relative w-[900px] h-[640px] bg-[rgba(255,255,255,0.85)] rounded-[64px] shadow-[0_10px_0_1px_#5A5A5A] overflow-hidden flex flex-col justify-center items-center -mt-4">
           {/* Paper Texture Background */}
           <img
@@ -48,13 +157,13 @@ function HomePage({ userName, onNavigate }) {
               className="font-unkempt-bold text-[32px] leading-tight mb-2"
               style={{ textAlign: "left" }}
             >
-              Hello {userName?.split(" ")[0] || "Mysha"}, you're in your
+              Hello {displayName}, you're in your
             </p>
             <p
-              className="font-unkempt-bold text-[48px] leading-tight"
+              className="font-unkempt-bold text-[48px] leading-tight capitalize"
               style={{ textAlign: "left", color: "#c57770" }}
             >
-              Luteal Phase.
+              {phase} phase.
             </p>
           </div>
 
@@ -67,16 +176,14 @@ function HomePage({ userName, onNavigate }) {
             />
           </div>
 
-          {/* Figma Design Content - Positioned inside the main frame */}
+          {/* Figma Design Content */}
           <div className="relative z-10 bg-[rgba(255,255,255,0)] opacity-90 overflow-clip rounded-[83px] size-full max-w-[785px] max-h-[468px]">
-            {/* Left Side: Luteal Phase Sticky Note */}
-            {/* TO ADJUST POSITION: Change 'left-[30px]' and 'top-[52px]' - Shifted another 10px left from 40px */}
+            {/* Left Side: Current Phase Sticky Note */}
             <div className="absolute h-[468px] left-[30px] top-[52px] w-[350px]">
               <div className="absolute content-stretch flex h-[366px] items-start left-0 overflow-clip top-[51px] w-[364px]">
-                {/* Luteal Phase Content Container */}
+                {/* Phase Content Container */}
                 <div className="absolute box-border content-stretch flex gap-[10px] items-start px-[80px] py-[32px] right-0 top-[38px] w-[364px]">
-                  {/* Decorative Flower - Top Left */}
-                  {/* TO ADJUST POSITION: Change 'left-0' and 'top-0' */}
+                  {/* Decorative Flower */}
                   <div className="h-[143px] relative shrink-0 w-[146px]">
                     <img
                       alt="decorative flower"
@@ -85,13 +192,12 @@ function HomePage({ userName, onNavigate }) {
                     />
                   </div>
 
-                  {/* Luteal Phase Sticky Note Background */}
-                  {/* TO ADJUST POSITION: Change 'left-[-15px]' and 'top-[-20.61px]' */}
+                  {/* Phase Sticky Note Background */}
                   <div className="absolute flex h-[calc(1px*((var(--transform-inner-width)*0.017452405765652657)+(var(--transform-inner-height)*0.9998476505279541)))] items-center justify-center left-[-15px] top-[-20.61px] w-[calc(1px*((var(--transform-inner-height)*0.017452405765652657)+(var(--transform-inner-width)*0.9998476505279541)))]">
                     <div className="flex-none rotate-[359deg] scale-y-[-100%]">
                       <div className="h-[354.892px] relative w-[406.413px]">
                         <img
-                          alt="luteal phase sticky note"
+                          alt="phase sticky note"
                           className="block max-w-none size-full"
                           src={lutealPhaseStickyNote}
                         />
@@ -99,33 +205,21 @@ function HomePage({ userName, onNavigate }) {
                     </div>
                   </div>
 
-                  {/* Luteal Phase Text Content */}
-                  {/* TO ADJUST POSITION: Change 'left-[195px]' and 'top-[102px]' */}
+                  {/* Phase Text Content - Dynamic */}
                   <div className="absolute font-['Poppins',sans-serif] leading-[normal] left-[195px] not-italic text-[12px] text-black text-left top-[102px] tracking-[-0.36px] translate-x-[-50%] w-[320px] whitespace-pre-wrap px-4 py-2">
-                    <p className="font-bold mb-1">Symptoms: </p>
-                    <p className="mb-1">
-                      PMS symptoms (e.g., bloating, breast tenderness),
-                    </p>
-                    <p className="mb-1">
-                      {" "}
-                      increased cravings, moodiness, fatigue
-                    </p>
-                    <p className="font-bold mb-1">Hormone levels: </p>
-                    <p>
-                      Progesterone levels rise, and then hormone levels began to
-                      drop a week before period in preparation for menstruation
-                    </p>
+                    <p className="font-bold mb-1">Symptoms:</p>
+                    <p className="mb-2">{currentPhaseInfo.symptoms}</p>
+                    <p className="font-bold mb-1">Hormone levels:</p>
+                    <p>{currentPhaseInfo.hormones}</p>
                   </div>
 
-                  {/* Luteal Phase Title */}
-                  {/* TO ADJUST POSITION: Change 'left-[122px]' and 'top-[52px]' */}
-                  <p className="absolute font-unkempt-bold left-[122px] text-[43px] top-[52px]">
-                    Luteal{" "}
+                  {/* Phase Title - Dynamic */}
+                  <p className="absolute font-unkempt-bold left-[122px] text-[43px] top-[52px] capitalize">
+                    {phase}
                   </p>
                 </div>
 
-                {/* Paper Clip Decoration - Left Side */}
-                {/* TO ADJUST POSITION: Change 'right-[280px]' and 'top-0' */}
+                {/* Paper Clip Decoration */}
                 <div className="absolute content-stretch flex flex-col gap-[10px] items-start justify-center right-[280px] top-0">
                   <div className="h-[58px] relative shrink-0 w-[50px]">
                     <img
@@ -138,12 +232,10 @@ function HomePage({ userName, onNavigate }) {
               </div>
 
               {/* Right Side: Cycle Insights Sticky Note */}
-              {/* TO ADJUST POSITION: Change 'left-[390px]' and 'top-0' - Shifted another 10px left from 400px */}
               <div className="absolute h-[468px] left-[390px] overflow-clip top-0 w-[350px]">
                 {/* Cycle Insights Sticky Note Background */}
-                {/* TO ADJUST POSITION: Change 'right-0' and 'top-[108px]' */}
                 <div className="absolute box-border content-stretch flex flex-col gap-[18px] h-[360px] items-start justify-center overflow-clip pl-[60px] pr-[40px] py-[31px] right-0 shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] top-[108px] w-[385px]">
-                  {/* Cycle Insights Sticky Note Image */}
+                  {/* Sticky Note Image */}
                   <div className="absolute h-[306.042px] left-[15px] top-[31px] w-[341.017px]">
                     <div className="absolute bottom-[-0.13%] left-[-0.12%] right-0 top-0">
                       <img
@@ -154,31 +246,31 @@ function HomePage({ userName, onNavigate }) {
                     </div>
                   </div>
 
-                  {/* Cycle Day Information */}
-                  {/* TO ADJUST POSITION: Change 'h-[36px]' and 'w-[300px]' */}
+                  {/* Dynamic Cycle Day Information */}
                   <p className="font-['Poppins',sans-serif] h-[36px] leading-[normal] not-italic relative shrink-0 text-[14px] text-black tracking-[-0.42px] w-[300px] whitespace-pre-wrap">
-                    Day 24 of cycle (your cycle lasts 28 days)
+                    Day {dayInCycle} of cycle (your cycle lasts{" "}
+                    {userData?.cycle_length || 28} days)
                   </p>
 
-                  {/* Phase Length Information */}
+                  {/* Dynamic Phase Length */}
                   <p className="font-['Poppins',sans-serif] h-[36px] leading-[normal] not-italic relative shrink-0 text-[14px] text-black tracking-[-0.42px] w-[300px] whitespace-pre-wrap">
-                    Average length of this phase: 13 days
+                    Average length of this phase: {phaseLength} days
                   </p>
 
                   {/* Energy Forecast */}
                   <p className="font-['Poppins',sans-serif] h-[36px] leading-[normal] not-italic relative shrink-0 text-[14px] text-black tracking-[-0.42px] w-[300px] whitespace-pre-wrap">
-                    Energy forecast: "Next high-focus window: days 7–11
-                    (follicular phase)
+                    Next phase in {daysUntilNextPhase} day
+                    {daysUntilNextPhase !== 1 ? "s" : ""}
                   </p>
 
-                  {/* Symptom Log Information */}
+                  {/* User Weight Info */}
                   <p className="font-['Poppins',sans-serif] h-[36px] leading-[normal] not-italic relative shrink-0 text-[14px] text-black tracking-[-0.42px] w-[300px] whitespace-pre-wrap">
-                    "Your most logged symptom is fatigue near day 25."
+                    Current weight:{" "}
+                    {userData?.weight ? `${userData.weight} kg` : "Not set"}
                   </p>
                 </div>
 
-                {/* Washi Tape Decoration - Top Right */}
-                {/* TO ADJUST POSITION: Change 'right-[87px]' and 'top-0' */}
+                {/* Washi Tape Decoration */}
                 <div className="absolute box-border content-stretch flex flex-col gap-[10px] items-start overflow-clip px-[6px] py-[84px] right-[87px] top-0 w-[250px]">
                   <div className="h-[82.11px] relative shrink-0 w-[237.5px]">
                     <div className="absolute bottom-[-9.74%] left-[-1.68%] right-[-1.68%] top-0">
@@ -192,19 +284,12 @@ function HomePage({ userName, onNavigate }) {
                   <div className="absolute inset-[62.4%_37.2%_-2.4%_22.8%]" />
 
                   {/* Cycle Insights Title */}
-                  {/* TO ADJUST POSITION: Change 'inset-[43.2%_21.6%_46.4%_21.6%]' */}
                   <p className="absolute font-unkempt-bold inset-[43.2%_21.6%_46.4%_21.6%] text-[22px] tracking-[-0.66px] whitespace-pre-wrap">
                     Cycle Insights:
                   </p>
                 </div>
               </div>
             </div>
-
-            {/* Bottom Text - Center Bottom */}
-            {/* TO ADJUST POSITION: Change 'left-[468.5px]' and 'top-[562px]' */}
-            <p className="absolute font-['Poppins:Medium',sans-serif] leading-[normal] left-[468.5px] not-italic text-[22px] text-black text-center top-[562px] tracking-[-0.66px] translate-x-[-50%] w-[785px] whitespace-pre-wrap">
-              we can maybe do a live cycle here
-            </p>
           </div>
         </div>
       </div>

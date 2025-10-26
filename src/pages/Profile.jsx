@@ -11,6 +11,8 @@ function Profile({ userName, onNavigate }) {
   const { isAuthenticated, user } = useAuth0();
   const [userData, setUserData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [phase, setPhase] = useState("");
+
   useEffect(() => {
     if (isAuthenticated && user) {
       const fetchUser = async () => {

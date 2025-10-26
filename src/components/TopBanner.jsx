@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import Logout from "./LogoutButton";
 
 const TopBanner = ({ onNavigate }) => {
   const tabs = ["Home", "Sync", "Check-In", "Calendar"];
@@ -39,7 +40,7 @@ const TopBanner = ({ onNavigate }) => {
         ))}
       </nav>
 
-      <div className="absolute right-6 top-4">
+      <div className="absolute right-6 top-4 gap-5 flex flex-row">
         <button
           onClick={() => handleClick("Profile")}
           className={`
@@ -49,6 +50,14 @@ const TopBanner = ({ onNavigate }) => {
         >
           Profile
         </button>
+        <div
+          className={`
+            bg-[#f4e9d8] px-4 py-2 rounded-full font-medium text-[#4a3b2f]
+            shadow-md hover:bg-[#fff5dc] transition
+          `}
+        >
+          <Logout></Logout>
+        </div>
       </div>
     </header>
   );
