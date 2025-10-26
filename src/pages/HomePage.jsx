@@ -21,7 +21,7 @@ function HomePage({ userName, onNavigate }) {
         alt="background"
         className="absolute inset-0 w-full h-full object-cover"
       />
-<dd></dd>
+
       <div className="relative z-10 flex flex-col items-center">
         {/* Navigation Banner */}
         <TopBanner onNavigate={onNavigate} />
@@ -47,7 +47,8 @@ function HomePage({ userName, onNavigate }) {
             </div>
 
             {/* Left Side: Luteal Phase Sticky Note */}
-            <div className="absolute h-[468px] left-[76px] top-[52px] w-[785px]">
+            {/* TO ADJUST POSITION: Change 'left-[120px]' and 'top-[52px]' - Shifted significantly from original */}
+            <div className="absolute h-[468px] left-[120px] top-[52px] w-[785px]">
               <div className="absolute content-stretch flex h-[366px] items-start left-0 overflow-clip top-[51px] w-[364px]">
                 
                 {/* Luteal Phase Content Container */}
@@ -106,7 +107,8 @@ function HomePage({ userName, onNavigate }) {
               </div>
 
               {/* Right Side: Cycle Insights Sticky Note */}
-              <div className="absolute h-[468px] left-[228px] overflow-clip top-0 w-[557px]">
+              {/* TO ADJUST POSITION: Change 'left-[280px]' and 'top-0' - Shifted significantly from original */}
+              <div className="absolute h-[468px] left-[280px] overflow-clip top-0 w-[557px]">
                 
                 {/* Cycle Insights Sticky Note Background */}
                 {/* TO ADJUST POSITION: Change 'right-0' and 'top-[108px]' */}
