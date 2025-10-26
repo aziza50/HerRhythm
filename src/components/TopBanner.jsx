@@ -1,9 +1,9 @@
-'use client';
-import React, { useState } from 'react';
+"use client";
+import React, { useState } from "react";
 
 const TopBanner = ({ onNavigate }) => {
-  const tabs = ['Home', 'Sync', 'Check-In', 'Calendar'];
-  const [activeTab, setActiveTab] = useState('Home');
+  const tabs = ["Home", "Sync", "Check-In", "Calendar"];
+  const [activeTab, setActiveTab] = useState("Home");
   const [disabled, setDisabled] = useState(false);
 
   const handleClick = (tab) => {
@@ -27,11 +27,12 @@ const TopBanner = ({ onNavigate }) => {
               relative px-5 py-1 opacity-90 rounded-t-2xl font-semibold 
               text-[#4a3b2f] transition-all duration-200 
               bg-[#fffbe9] border-[#b5d96c] shadow-[0_-4px_6px_rgba(0,0,0,0.25)] border-b-4
-              ${activeTab === tab 
-                ? 'bg-[#fffbe9] border-[#b5d96c]' 
-                : 'bg-[#f4e9d8] border-transparent hover:bg-[#fff5dc]'
+              ${
+                activeTab === tab
+                  ? "bg-[#fffbe9] border-[#b5d96c]"
+                  : "bg-[#f4e9d8] border-transparent hover:bg-[#fff5dc]"
               }
-              ${disabled ? 'opacity-70 cursor-not-allowed' : ''}
+              ${disabled ? "opacity-70 cursor-not-allowed" : ""}
             `}
           >
             {tab}
@@ -41,7 +42,7 @@ const TopBanner = ({ onNavigate }) => {
 
       <div className="absolute right-6 top-4">
         <button
-          onClick={() => handleClick('Profile')}
+          onClick={() => handleClick("Profile")}
           className={`
             bg-[#f4e9d8] px-4 py-2 rounded-full font-medium text-[#4a3b2f] 
             shadow-md hover:bg-[#fff5dc] transition
