@@ -10,6 +10,7 @@ function CheckIn({ userName }) {
   const [mood, setMood] = useState(null);
   const [energy, setEnergy] = useState(50);
   const [motivation, setMotivation] = useState(50);
+  const [flow, setFlow] = useState("None");
   const [symptoms, setSymptoms] = useState([]);
   const [notes, setNotes] = useState("");
 
@@ -24,7 +25,7 @@ function CheckIn({ userName }) {
   };
 
   const handleSubmit = () => {
-    console.log({ mood, energy, motivation, symptoms, notes });
+    console.log({ mood, energy, motivation, flow, symptoms, notes });
   };
 
   const today = new Date().toLocaleDateString();
@@ -55,12 +56,12 @@ function CheckIn({ userName }) {
           </div>
 
           <div className="relative z-10 flex gap-15">
-            {/* Left Column: Mood, Energy, Motivation */}
-            <div className="flex flex-col gap-10 w-1/2">
+            {/* Left Column: Mood, Energy, Motivation, Flow */}
+            <div className="flex flex-col gap-8 w-1/2">
               {/* Mood */}
-              <div className="bg-white -rotate-1 shadow-[0_4px_10px_0_rgba(90,90,90,0.6)] p-4 flex flex-col items-center">
+              <div className="bg-white -rotate-1 shadow-[0_4px_10px_0_rgba(90,90,90,0.6)] p-2 flex flex-col items-center">
                 <div className="absolute -top-3 w-12 h-4 bg-[#f4e9d8] rotate-2 shadow-md"></div>
-                <h2 className="font-semibold mb-2">Mood</h2>
+                <h2 className="font-semibold">Mood</h2>
                 <div className="flex gap-4">
                   {["😄", "😊", "😐", "😞", "😢"].map((emoji) => (
                     <button
@@ -86,10 +87,10 @@ function CheckIn({ userName }) {
                   max={100}
                   value={energy}
                   onChange={(e) => setEnergy(e.target.value)}
-                    className="w-full h-2 rounded-lg appearance-none bg-pink-200 accent-pink-500"
-                    style={{
-                    accentColor: "#f687b3", // pink for modern browsers
-                 }}
+                  className="w-full h-2 rounded-lg appearance-none bg-pink-200 accent-pink-500"
+                  style={{
+                    accentColor: "#f687b3",
+                  }}
                 />
               </div>
 
@@ -103,11 +104,36 @@ function CheckIn({ userName }) {
                   max={100}
                   value={motivation}
                   onChange={(e) => setMotivation(e.target.value)}
-                                      className="w-full h-2 rounded-lg appearance-none bg-pink-200 accent-pink-500"
-  style={{
-    accentColor: "#f687b3", // pink for modern browsers
-  }}
+                  className="w-full h-2 rounded-lg appearance-none bg-pink-200 accent-pink-500"
+                  style={{
+                    accentColor: "#f687b3",
+                  }}
                 />
+              </div>
+
+              {/* Cycle Flow */}
+              <div className="bg-white rotate-1 shadow-[0_4px_10px_0_rgba(90,90,90,0.6)] p-2 px-5 flex flex-col items-center">
+                <div className="absolute -top-3 w-12 h-4 bg-[#f4e9d8] rotate-2 shadow-md"></div>
+                <h2 className="font-semibold mb-2">Cycle Flow</h2>
+                <div className="flex gap-2 justify-center flex-wrap pb-2">
+                  {["None", "Spotting", "Light", "Medium", "Heavy"].map(
+                    (level) => (
+                      <button
+                        key={level}
+                        onClick={() => setFlow(level)}
+                        className={`px-3 py-1 rounded-md transition-all duration-200 font-medium
+                          ${
+                            flow === level
+                              ? "bg-pink-300 text-white shadow-md"
+                              : "bg-pink-100 text-pink-700 hover:bg-pink-200"
+                          }
+                        `}
+                      >
+                        {level}
+                      </button>
+                    )
+                  )}
+                </div>
               </div>
             </div>
 
@@ -118,18 +144,20 @@ function CheckIn({ userName }) {
                 <div className="absolute -top-3 w-12 h-4 bg-[#f4e9d8] rotate-2 shadow-md"></div>
                 <h2 className="font-semibold mb-2">Symptoms</h2>
                 <div className="flex gap-3 flex-wrap justify-center">
-  {symptomOptions.map((s) => (
-    <button
-      key={s}
-      onClick={() => toggleSymptom(s)}
-      className={`px-3 py-1 rounded-md transition-all duration-200 
-        ${symptoms.includes(s) 
-          ? "bg-pink-300 text-white shadow-md" 
-          : "bg-pink-100 text-pink-700 hover:bg-pink-200"}
-      `}
-    >
-      {s}
-    </button>
+                  {symptomOptions.map((s) => (
+                    <button
+                      key={s}
+                      onClick={() => toggleSymptom(s)}
+                      className={`px-3 py-1 rounded-md transition-all duration-200 
+                        ${
+                          symptoms.includes(s)
+                            ? "bg-pink-300 text-white shadow-md"
+                            : "bg-pink-100 text-pink-700 hover:bg-pink-200"
+                        }
+                      `}
+                    >
+                      {s}
+                    </button>
                   ))}
                 </div>
               </div>
@@ -145,14 +173,15 @@ function CheckIn({ userName }) {
                   placeholder="Jot down any thoughts..."
                 />
               </div>
-<div className="flex justify-center w-full mt-2">
-  <button
-    onClick={handleSubmit}
-    className="bg-pink-400 hover:bg-pink-500 text-white font-bold py-3 px-6 rounded-2xl shadow-md"
-  >
-    Submit Check-In
-  </button>
-</div>
+
+              <div className="flex justify-center w-full mt-2">
+                <button
+                  onClick={handleSubmit}
+                  className="bg-pink-400 hover:bg-pink-500 text-white font-bold py-3 px-6 rounded-2xl shadow-md"
+                >
+                  Submit Check-In
+                </button>
+              </div>
             </div>
           </div>
         </div>

@@ -17,13 +17,7 @@ function HomePage() {
       const fetchUser = async () => {
         try {
           const response = await fetch(
-            `http://localhost:5173/api/user?auth0Id=${encodeURIComponent(
-              user.sub
-            )}`,
-            {
-              method: "GET",
-              headers: { "Content-Type": "application/json" },
-            }
+            `http://localhost:5001/api/user?auth0Id=${user.sub}`
           );
 
           if (!response.ok) throw new Error("User not found");
