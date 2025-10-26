@@ -1,10 +1,18 @@
+import { Routes, Route } from 'react-router-dom';
 import React, { useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import LoginPage from './pages/LoginPage';
 import HomePage from './pages/HomePage';
+import CheckIn from './pages/CheckIn';
 import TestHomePage from './pages/TestHomePage';
 
 function App() {
+    return (
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/checkin" element={<CheckIn />} />
+    </Routes>
+  );
   const { isAuthenticated, isLoading, logout, user } = useAuth0();
   const [currentPage, setCurrentPage] = useState('home'); // 'home' or 'test'
 
