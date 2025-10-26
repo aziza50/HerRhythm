@@ -26,3 +26,21 @@ body {
   color: #000;
   line-height: normal;
 }
+
+/* Unkempt font for main titles and subtitles */
+.font-unkempt-bold {
+  font-family: 'Unkempt', cursive;
+  font-weight: 700;
+  color: #000;
+  text-align: center;
+  line-height: normal;
+  letter-spacing: -1.17px;
+}
+
+.font-unkempt-regular {
+  font-family: 'Unkempt', cursive;
+  font-weight: 400;
+  color: #000;
+  text-align: center;
+  line-height: normal;
+}

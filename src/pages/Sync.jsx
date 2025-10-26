@@ -18,100 +18,62 @@ function Sync({ userName, onNavigate }) {
       <div className="relative z-10 flex flex-col items-center">
         <TopBanner onNavigate={onNavigate} />
 
-        <div className="relative w-[900px] min-h-[630px] bg-[rgba(255,255,255,0.85)] rounded-[64px] shadow-[0_10px_0_1px_#5A5A5A] overflow-hidden flex flex-col px-15 py-6 -mt-4 mb-8">
+        <div className="relative w-[900px] h-[640px] bg-[rgba(255,255,255,0.85)] rounded-[64px] shadow-[0_10px_0_1px_#5A5A5A] overflow-hidden flex flex-col justify-center items-center -mt-4">
           <img
             src={paperTexture}
             alt="paper texture"
             className="absolute inset-0 w-full h-full object-cover mix-blend-multiply rounded-[64px]"
           />
 
-          <div className="relative z-10 text-center mb-6 mt-2">
-            <h1 className="font-poppins-extrabold text-3xl text-[#2f2f2f]">
-              Sync & Integrations
+          <div className="relative z-10 text-center mb-8">
+            <h1 className="font-unkempt-bold text-[39px] text-[#2f2f2f] mb-2">
+              Sync Yourself to Your Cycle
             </h1>
-            <p className="text-gray-600">Connect with your favorite apps and devices</p>
+            <p className="font-unkempt-regular text-[18px] text-gray-600">Personalized tips to align with your natural rhythm</p>
           </div>
 
-          <div className="relative z-10 flex gap-15">
-            {/* Left Column: Health Apps */}
-            <div className="flex flex-col gap-10 w-1/2">
-              <div className="bg-white -rotate-1 shadow-[0_4px_10px_0_rgba(90,90,90,0.6)] p-4 flex flex-col items-center">
-                <div className="absolute -top-3 w-12 h-4 bg-[#f4e9d8] rotate-2 shadow-md"></div>
-                <h2 className="font-semibold mb-2">Health Apps</h2>
-                <div className="space-y-3 w-full">
-                  <div className="flex items-center justify-between p-2 bg-pink-50 rounded-lg">
-                    <span className="text-sm">Apple Health</span>
-                    <button className="bg-pink-400 hover:bg-pink-500 text-white px-3 py-1 rounded text-xs">
-                      Connect
-                    </button>
-                  </div>
-                  <div className="flex items-center justify-between p-2 bg-pink-50 rounded-lg">
-                    <span className="text-sm">Google Fit</span>
-                    <button className="bg-pink-400 hover:bg-pink-500 text-white px-3 py-1 rounded text-xs">
-                      Connect
-                    </button>
-                  </div>
-                  <div className="flex items-center justify-between p-2 bg-pink-50 rounded-lg">
-                    <span className="text-sm">Fitbit</span>
-                    <button className="bg-pink-400 hover:bg-pink-500 text-white px-3 py-1 rounded text-xs">
-                      Connect
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-white rotate-1 shadow-[0_4px_10px_0_rgba(90,90,90,0.6)] p-4 flex flex-col items-center">
-                <div className="absolute -top-3 w-12 h-4 bg-[#f4e9d8] rotate-1 shadow-md"></div>
-                <h2 className="font-semibold mb-2">Calendar Apps</h2>
-                <div className="space-y-3 w-full">
-                  <div className="flex items-center justify-between p-2 bg-pink-50 rounded-lg">
-                    <span className="text-sm">Google Calendar</span>
-                    <button className="bg-pink-400 hover:bg-pink-500 text-white px-3 py-1 rounded text-xs">
-                      Connect
-                    </button>
-                  </div>
-                  <div className="flex items-center justify-between p-2 bg-pink-50 rounded-lg">
-                    <span className="text-sm">Outlook</span>
-                    <button className="bg-pink-400 hover:bg-pink-500 text-white px-3 py-1 rounded text-xs">
-                      Connect
-                    </button>
-                  </div>
-                </div>
+          <div className="relative z-10 grid grid-cols-2 gap-8 max-w-[800px]">
+            {/* Self Care Tips */}
+            <div className="bg-white -rotate-1 shadow-[0_4px_10px_0_rgba(90,90,90,0.6)] p-6 flex flex-col items-center text-center">
+              <div className="absolute -top-3 w-12 h-4 bg-[#f4e9d8] rotate-2 shadow-md"></div>
+              <h2 className="font-unkempt-bold text-[24px] text-[#2f2f2f] mb-4">🌸 Self Care</h2>
+              <div className="bg-pink-50 p-4 rounded-lg w-full">
+                <p className="text-sm text-gray-700">
+                  Focus on gentle stress relief and warm baths during your luteal phase
+                </p>
               </div>
             </div>
 
-            {/* Right Column: Sync Status */}
-            <div className="flex flex-col gap-5 w-1/2">
-              <div className="bg-white rotate-1 shadow-[0_4px_10px_0_rgba(90,90,90,0.6)] p-4 flex flex-col items-center">
-                <div className="absolute -top-3 w-12 h-4 bg-[#f4e9d8] rotate-2 shadow-md"></div>
-                <h2 className="font-semibold mb-2">Sync Status</h2>
-                <div className="space-y-2 text-sm">
-                  <div className="flex items-center">
-                    <div className="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
-                    <span>Last sync: 2 minutes ago</span>
-                  </div>
-                  <div className="flex items-center">
-                    <div className="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
-                    <span>Data backed up</span>
-                  </div>
-                  <div className="flex items-center">
-                    <div className="w-3 h-3 bg-yellow-500 rounded-full mr-2"></div>
-                    <span>3 pending updates</span>
-                  </div>
-                </div>
+            {/* Productivity Tips */}
+            <div className="bg-white rotate-1 shadow-[0_4px_10px_0_rgba(90,90,90,0.6)] p-6 flex flex-col items-center text-center">
+              <div className="absolute -top-3 w-12 h-4 bg-[#f4e9d8] rotate-1 shadow-md"></div>
+              <h2 className="font-unkempt-bold text-[24px] text-[#2f2f2f] mb-4">💼 Productivity</h2>
+              <div className="bg-green-50 p-4 rounded-lg w-full">
+                <p className="text-sm text-gray-700">
+                  Plan routine tasks and gentle organizing for your current energy level
+                </p>
               </div>
+            </div>
 
-              <div className="bg-white -rotate-1 shadow-[0_4px_10px_0_rgba(90,90,90,0.6)] p-4 flex flex-col">
-                <div className="absolute -top-3 w-12 h-4 bg-[#f4e9d8] rotate-1 shadow-md"></div>
-                <h2 className="font-semibold mb-2">Sync Actions</h2>
-                <div className="space-y-2">
-                  <button className="w-full bg-pink-400 hover:bg-pink-500 text-white font-bold py-2 px-4 rounded-lg text-sm">
-                    Sync Now
-                  </button>
-                  <button className="w-full bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded-lg text-sm">
-                    Export Data
-                  </button>
-                </div>
+            {/* Exercise Tips */}
+            <div className="bg-white rotate-1 shadow-[0_4px_10px_0_rgba(90,90,90,0.6)] p-6 flex flex-col items-center text-center">
+              <div className="absolute -top-3 w-12 h-4 bg-[#f4e9d8] -rotate-1 shadow-md"></div>
+              <h2 className="font-unkempt-bold text-[24px] text-[#2f2f2f] mb-4">🏃‍♀️ Exercise</h2>
+              <div className="bg-orange-50 p-4 rounded-lg w-full">
+                <p className="text-sm text-gray-700">
+                  Gentle yoga or walking is perfect for your current cycle phase
+                </p>
+              </div>
+            </div>
+
+            {/* Diet Tips */}
+            <div className="bg-white -rotate-1 shadow-[0_4px_10px_0_rgba(90,90,90,0.6)] p-6 flex flex-col items-center text-center">
+              <div className="absolute -top-3 w-12 h-4 bg-[#f4e9d8] rotate-1 shadow-md"></div>
+              <h2 className="font-unkempt-bold text-[24px] text-[#2f2f2f] mb-4">🥗 Diet</h2>
+              <div className="bg-emerald-50 p-4 rounded-lg w-full">
+                <p className="text-sm text-gray-700">
+                  Include magnesium-rich foods and warm, nourishing meals today
+                </p>
               </div>
             </div>
           </div>

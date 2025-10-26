@@ -41,14 +41,14 @@ function HomePage({ userName, onNavigate }) {
             {/* Welcome Message - Top Center */}
             {/* TO ADJUST POSITION: Change 'top-[3px]' and 'left-[146px]' */}
             <div className="absolute h-[47px] right-[265px] top-[3px] w-[292px]">
-              <p className="absolute font-srisakdi-bold left-[146px] text-[39px] text-center top-0 tracking-[-1.17px] translate-x-[-50%]">
+              <p className="absolute font-unkempt-bold left-[146px] text-[39px] top-0 translate-x-[-50%]">
                 Welcome {userName?.split(" ")[0] || "Friend"}!
               </p>
             </div>
 
             {/* Left Side: Luteal Phase Sticky Note */}
-            {/* TO ADJUST POSITION: Change 'left-[81px]' and 'top-[52px]' - Shifted 10% left from 90px */}
-            <div className="absolute h-[468px] left-[81px] top-[52px] w-[785px]">
+            {/* TO ADJUST POSITION: Change 'left-[30px]' and 'top-[52px]' - Shifted another 10px left from 40px */}
+            <div className="absolute h-[468px] left-[30px] top-[52px] w-[350px]">
               <div className="absolute content-stretch flex h-[366px] items-start left-0 overflow-clip top-[51px] w-[364px]">
                 
                 {/* Luteal Phase Content Container */}
@@ -90,7 +90,7 @@ function HomePage({ userName, onNavigate }) {
 
                   {/* Luteal Phase Title */}
                   {/* TO ADJUST POSITION: Change 'left-[122px]' and 'top-[52px]' */}
-                  <p className="absolute font-srisakdi-bold left-[122px] text-[43px] top-[52px]">Luteal </p>
+                  <p className="absolute font-unkempt-bold left-[122px] text-[43px] top-[52px]">Luteal </p>
                 </div>
 
                 {/* Paper Clip Decoration - Left Side */}
@@ -107,12 +107,12 @@ function HomePage({ userName, onNavigate }) {
               </div>
 
               {/* Right Side: Cycle Insights Sticky Note */}
-              {/* TO ADJUST POSITION: Change 'left-[205px]' and 'top-0' - Shifted 10% left from 228px */}
-              <div className="absolute h-[468px] left-[260px] overflow-clip top-0 w-[557px]">
+              {/* TO ADJUST POSITION: Change 'left-[390px]' and 'top-0' - Shifted another 10px left from 400px */}
+              <div className="absolute h-[468px] left-[390px] overflow-clip top-0 w-[350px]">
                 
                 {/* Cycle Insights Sticky Note Background */}
                 {/* TO ADJUST POSITION: Change 'right-0' and 'top-[108px]' */}
-                <div className="absolute box-border content-stretch flex flex-col gap-[18px] h-[360px] items-start justify-center overflow-clip px-[39px] py-[31px] right-0 shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] top-[108px] w-[385px]">
+                <div className="absolute box-border content-stretch flex flex-col gap-[18px] h-[360px] items-start justify-center overflow-clip pl-[39px] pr-[60px] py-[31px] right-0 shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] top-[108px] w-[385px]">
                   
                   {/* Cycle Insights Sticky Note Image */}
                   <div className="absolute h-[306.042px] left-[15px] top-[31px] w-[341.017px]">
@@ -126,23 +126,23 @@ function HomePage({ userName, onNavigate }) {
                   </div>
 
                   {/* Cycle Day Information */}
-                  {/* TO ADJUST POSITION: Change 'h-[36px]' and 'w-[312px]' */}
-                  <p className="font-['Poppins:Regular',sans-serif] h-[36px] leading-[normal] not-italic relative shrink-0 text-[14px] text-black tracking-[-0.42px] w-[312px] whitespace-pre-wrap">
+                  {/* TO ADJUST POSITION: Change 'h-[36px]' and 'w-[280px]' - Reduced width for more right padding */}
+                  <p className="font-['Poppins:Regular',sans-serif] h-[36px] leading-[normal] not-italic relative shrink-0 text-[14px] text-black tracking-[-0.42px] w-[280px] whitespace-pre-wrap">
                     Day 24 of cycle (your cycle lasts 28 days)
                   </p>
 
                   {/* Phase Length Information */}
-                  <p className="font-['Poppins:Regular',sans-serif] h-[36px] leading-[normal] not-italic relative shrink-0 text-[14px] text-black tracking-[-0.42px] w-[312px] whitespace-pre-wrap">
+                  <p className="font-['Poppins:Regular',sans-serif] h-[36px] leading-[normal] not-italic relative shrink-0 text-[14px] text-black tracking-[-0.42px] w-[280px] whitespace-pre-wrap">
                     Average length of this phase: 13 days
                   </p>
 
                   {/* Energy Forecast */}
-                  <p className="font-['Poppins:Regular',sans-serif] h-[36px] leading-[normal] not-italic relative shrink-0 text-[14px] text-black tracking-[-0.42px] w-[290px] whitespace-pre-wrap">
+                  <p className="font-['Poppins:Regular',sans-serif] h-[36px] leading-[normal] not-italic relative shrink-0 text-[14px] text-black tracking-[-0.42px] w-[260px] whitespace-pre-wrap">
                     Energy forecast: "Next high-focus window: days 7–11 (follicular phase)
                   </p>
 
                   {/* Symptom Log Information */}
-                  <p className="font-['Poppins:Regular',sans-serif] h-[36px] leading-[normal] not-italic relative shrink-0 text-[14px] text-black tracking-[-0.42px] w-[290px] whitespace-pre-wrap">
+                  <p className="font-['Poppins:Regular',sans-serif] h-[36px] leading-[normal] not-italic relative shrink-0 text-[14px] text-black tracking-[-0.42px] w-[260px] whitespace-pre-wrap">
                     "Your most logged symptom is fatigue near day 25."
                   </p>
                 </div>
@@ -163,7 +163,7 @@ function HomePage({ userName, onNavigate }) {
                   
                   {/* Cycle Insights Title */}
                   {/* TO ADJUST POSITION: Change 'inset-[43.2%_21.6%_46.4%_21.6%]' */}
-                  <p className="absolute font-srisakdi-bold inset-[43.2%_21.6%_46.4%_21.6%] text-[22px] text-center tracking-[-0.66px] whitespace-pre-wrap">
+                  <p className="absolute font-unkempt-bold inset-[43.2%_21.6%_46.4%_21.6%] text-[22px] tracking-[-0.66px] whitespace-pre-wrap">
                     Cycle Insights:
                   </p>
                 </div>

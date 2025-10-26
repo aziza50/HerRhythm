@@ -18,7 +18,7 @@ function Profile({ userName, onNavigate }) {
       <div className="relative z-10 flex flex-col items-center">
         <TopBanner onNavigate={onNavigate} />
 
-        <div className="relative w-[900px] min-h-[630px] bg-[rgba(255,255,255,0.85)] rounded-[64px] shadow-[0_10px_0_1px_#5A5A5A] overflow-hidden flex flex-col px-15 py-6 -mt-4 mb-8">
+        <div className="relative w-[900px] h-[640px] bg-[rgba(255,255,255,0.85)] rounded-[64px] shadow-[0_10px_0_1px_#5A5A5A] overflow-hidden flex flex-col justify-center items-center -mt-4">
           <img
             src={paperTexture}
             alt="paper texture"
@@ -26,10 +26,10 @@ function Profile({ userName, onNavigate }) {
           />
 
           <div className="relative z-10 text-center mb-6 mt-2">
-            <h1 className="font-poppins-extrabold text-3xl text-[#2f2f2f]">
+            <h1 className="font-unkempt-bold text-[39px] text-[#2f2f2f]">
               Profile Settings
             </h1>
-            <p className="text-gray-600">Manage your account and preferences</p>
+            <p className="font-unkempt-regular text-[18px] text-gray-600">Manage your account and preferences</p>
           </div>
 
           <div className="relative z-10 flex gap-15">
