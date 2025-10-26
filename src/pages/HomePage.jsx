@@ -37,7 +37,7 @@ function HomePage({ userName, onNavigate }) {
 
           {/* Title - Left Aligned */}
           <div className="absolute left-[90px] top-[70px] w-[500px] z-20">
-            <p className="font-unkempt-bold text-[32px] leading-tight mb-2" style={{textAlign: 'left'}}>
+            <p className="font-['Poppins',sans-serif] font-bold text-[32px] leading-tight mb-2" style={{textAlign: 'left'}}>
               Hello {userName?.split(" ")[0] || "Mysha"}, you're in your
             </p>
             <p className="font-unkempt-bold text-[48px] leading-tight" style={{textAlign: 'left', color: '#c57770'}}>
@@ -62,8 +62,8 @@ function HomePage({ userName, onNavigate }) {
             <div className="absolute h-[468px] left-[30px] top-[52px] w-[350px]">
               <div className="absolute content-stretch flex h-[366px] items-start left-0 overflow-clip top-[51px] w-[364px]">
                 
-                {/* Luteal Phase Content Container */}
-                <div className="absolute box-border content-stretch flex gap-[10px] items-start px-[109px] py-[32px] right-0 top-[38px] w-[364px]">
+                  {/* Luteal Phase Content Container */}
+                  <div className="absolute box-border content-stretch flex gap-[10px] items-start px-[80px] py-[32px] right-0 top-[38px] w-[364px]">
                   
                   {/* Decorative Flower - Top Left */}
                   {/* TO ADJUST POSITION: Change 'left-0' and 'top-0' */}
@@ -90,12 +90,12 @@ function HomePage({ userName, onNavigate }) {
                   </div>
 
                   {/* Luteal Phase Text Content */}
-                  {/* TO ADJUST POSITION: Change 'left-[195px]' and 'top-[112px]' */}
-                  <div className="absolute font-['Poppins:Medium',sans-serif] leading-[normal] left-[195px] not-italic text-[15px] text-black text-center top-[112px] tracking-[-0.45px] translate-x-[-50%] w-[320px] whitespace-pre-wrap">
-                    <p className="font-['Poppins:Bold',sans-serif] mb-0">Symptoms: </p>
-                    <p className="mb-0">PMS symptoms (e.g., bloating, breast tenderness),</p>
-                    <p className="mb-0"> increased cravings, moodiness, fatigue</p>
-                    <p className="font-['Poppins:Bold',sans-serif] mb-0">Hormone levels: </p>
+                  {/* TO ADJUST POSITION: Change 'left-[195px]' and 'top-[102px]' */}
+                  <div className="absolute font-['Poppins',sans-serif] leading-[normal] left-[195px] not-italic text-[12px] text-black text-left top-[102px] tracking-[-0.36px] translate-x-[-50%] w-[320px] whitespace-pre-wrap px-4 py-2">
+                    <p className="font-bold mb-1">Symptoms: </p>
+                    <p className="mb-1">PMS symptoms (e.g., bloating, breast tenderness),</p>
+                    <p className="mb-1"> increased cravings, moodiness, fatigue</p>
+                    <p className="font-bold mb-1">Hormone levels: </p>
                     <p>Progesterone levels rise, and then hormone levels began to drop a week before period in preparation for menstruation</p>
                   </div>
 
@@ -123,7 +123,7 @@ function HomePage({ userName, onNavigate }) {
                 
                 {/* Cycle Insights Sticky Note Background */}
                 {/* TO ADJUST POSITION: Change 'right-0' and 'top-[108px]' */}
-                <div className="absolute box-border content-stretch flex flex-col gap-[18px] h-[360px] items-start justify-center overflow-clip pl-[39px] pr-[60px] py-[31px] right-0 shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] top-[108px] w-[385px]">
+                <div className="absolute box-border content-stretch flex flex-col gap-[18px] h-[360px] items-start justify-center overflow-clip pl-[60px] pr-[40px] py-[31px] right-0 shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] top-[108px] w-[385px]">
                   
                   {/* Cycle Insights Sticky Note Image */}
                   <div className="absolute h-[306.042px] left-[15px] top-[31px] w-[341.017px]">
@@ -137,23 +137,23 @@ function HomePage({ userName, onNavigate }) {
                   </div>
 
                   {/* Cycle Day Information */}
-                  {/* TO ADJUST POSITION: Change 'h-[36px]' and 'w-[280px]' - Reduced width for more right padding */}
-                  <p className="font-['Poppins:Regular',sans-serif] h-[36px] leading-[normal] not-italic relative shrink-0 text-[14px] text-black tracking-[-0.42px] w-[280px] whitespace-pre-wrap">
+                  {/* TO ADJUST POSITION: Change 'h-[36px]' and 'w-[300px]' */}
+                  <p className="font-['Poppins',sans-serif] h-[36px] leading-[normal] not-italic relative shrink-0 text-[14px] text-black tracking-[-0.42px] w-[300px] whitespace-pre-wrap">
                     Day 24 of cycle (your cycle lasts 28 days)
                   </p>
 
                   {/* Phase Length Information */}
-                  <p className="font-['Poppins:Regular',sans-serif] h-[36px] leading-[normal] not-italic relative shrink-0 text-[14px] text-black tracking-[-0.42px] w-[280px] whitespace-pre-wrap">
+                  <p className="font-['Poppins',sans-serif] h-[36px] leading-[normal] not-italic relative shrink-0 text-[14px] text-black tracking-[-0.42px] w-[300px] whitespace-pre-wrap">
                     Average length of this phase: 13 days
                   </p>
 
                   {/* Energy Forecast */}
-                  <p className="font-['Poppins:Regular',sans-serif] h-[36px] leading-[normal] not-italic relative shrink-0 text-[14px] text-black tracking-[-0.42px] w-[260px] whitespace-pre-wrap">
+                  <p className="font-['Poppins',sans-serif] h-[36px] leading-[normal] not-italic relative shrink-0 text-[14px] text-black tracking-[-0.42px] w-[300px] whitespace-pre-wrap">
                     Energy forecast: "Next high-focus window: days 7–11 (follicular phase)
                   </p>
 
                   {/* Symptom Log Information */}
-                  <p className="font-['Poppins:Regular',sans-serif] h-[36px] leading-[normal] not-italic relative shrink-0 text-[14px] text-black tracking-[-0.42px] w-[260px] whitespace-pre-wrap">
+                  <p className="font-['Poppins',sans-serif] h-[36px] leading-[normal] not-italic relative shrink-0 text-[14px] text-black tracking-[-0.42px] w-[300px] whitespace-pre-wrap">
                     "Your most logged symptom is fatigue near day 25."
                   </p>
                 </div>

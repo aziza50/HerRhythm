@@ -36,7 +36,14 @@ function Sync({ userName, onNavigate }) {
             {/* Self Care Tips */}
             <div className="bg-white -rotate-1 shadow-[0_4px_10px_0_rgba(90,90,90,0.6)] p-6 flex flex-col items-center text-center">
               <div className="absolute -top-3 w-12 h-4 bg-[#f4e9d8] rotate-2 shadow-md"></div>
-              <h2 className="font-unkempt-bold text-[24px] text-[#2f2f2f] mb-4">🌸 Self Care</h2>
+              <div className="w-12 h-12 mb-2">
+                <img 
+                  src="/src/assets/images/catread.png" 
+                  alt="Cat reading" 
+                  className="w-full h-full object-contain mix-blend-multiply"
+                />
+              </div>
+              <h2 className="font-unkempt-bold text-[24px] text-[#2f2f2f] mb-4">Self Care</h2>
               <div className="bg-pink-50 p-4 rounded-lg w-full">
                 <p className="text-sm text-gray-700">
                   Focus on gentle stress relief and warm baths during your luteal phase
@@ -47,7 +54,14 @@ function Sync({ userName, onNavigate }) {
             {/* Productivity Tips */}
             <div className="bg-white rotate-1 shadow-[0_4px_10px_0_rgba(90,90,90,0.6)] p-6 flex flex-col items-center text-center">
               <div className="absolute -top-3 w-12 h-4 bg-[#f4e9d8] rotate-1 shadow-md"></div>
-              <h2 className="font-unkempt-bold text-[24px] text-[#2f2f2f] mb-4">💼 Productivity</h2>
+              <div className="w-12 h-12 mb-2">
+                <img 
+                  src="/src/assets/images/catlaptop.png" 
+                  alt="Cat with laptop" 
+                  className="w-full h-full object-contain mix-blend-multiply"
+                />
+              </div>
+              <h2 className="font-unkempt-bold text-[24px] text-[#2f2f2f] mb-4">Productivity</h2>
               <div className="bg-green-50 p-4 rounded-lg w-full">
                 <p className="text-sm text-gray-700">
                   Plan routine tasks and gentle organizing for your current energy level
@@ -58,7 +72,14 @@ function Sync({ userName, onNavigate }) {
             {/* Exercise Tips */}
             <div className="bg-white rotate-1 shadow-[0_4px_10px_0_rgba(90,90,90,0.6)] p-6 flex flex-col items-center text-center">
               <div className="absolute -top-3 w-12 h-4 bg-[#f4e9d8] -rotate-1 shadow-md"></div>
-              <h2 className="font-unkempt-bold text-[24px] text-[#2f2f2f] mb-4">🏃‍♀️ Exercise</h2>
+              <div className="w-12 h-12 mb-2">
+                <img 
+                  src="/src/assets/images/catcheer.png" 
+                  alt="Cat cheering" 
+                  className="w-full h-full object-contain mix-blend-multiply"
+                />
+              </div>
+              <h2 className="font-unkempt-bold text-[24px] text-[#2f2f2f] mb-4">Exercise</h2>
               <div className="bg-orange-50 p-4 rounded-lg w-full">
                 <p className="text-sm text-gray-700">
                   Gentle yoga or walking is perfect for your current cycle phase
@@ -69,7 +90,14 @@ function Sync({ userName, onNavigate }) {
             {/* Diet Tips */}
             <div className="bg-white -rotate-1 shadow-[0_4px_10px_0_rgba(90,90,90,0.6)] p-6 flex flex-col items-center text-center">
               <div className="absolute -top-3 w-12 h-4 bg-[#f4e9d8] rotate-1 shadow-md"></div>
-              <h2 className="font-unkempt-bold text-[24px] text-[#2f2f2f] mb-4">🥗 Diet</h2>
+              <div className="w-12 h-12 mb-2">
+                <img 
+                  src="/src/assets/images/cateat.png" 
+                  alt="Cat eating" 
+                  className="w-full h-full object-contain mix-blend-multiply"
+                />
+              </div>
+              <h2 className="font-unkempt-bold text-[24px] text-[#2f2f2f] mb-4">Diet</h2>
               <div className="bg-emerald-50 p-4 rounded-lg w-full">
                 <p className="text-sm text-gray-700">
                   Include magnesium-rich foods and warm, nourishing meals today
