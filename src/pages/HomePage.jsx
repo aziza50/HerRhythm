@@ -1,9 +1,12 @@
-import React from 'react'
+import React from 'react';
+import TopBanner from '../components/TopBanner'; // make sure this path is correct
 
-const bgImage = "https://www.figma.com/api/mcp/asset/a9c15f6e-7617-49ff-9189-de4819acab2b"; // background
-const paperTexture = "https://www.figma.com/api/mcp/asset/a13ec45d-162d-4fd5-9da5-32b47a0e084a"; // notebook paper
+const bgImage =
+  "https://www.figma.com/api/mcp/asset/a9c15f6e-7617-49ff-9189-de4819acab2b"; // background
+const paperTexture =
+  "https://www.figma.com/api/mcp/asset/a13ec45d-162d-4fd5-9da5-32b47a0e084a"; // notebook paper
 
-function HomePage() {
+function HomePage({ userName }) {
   return (
     <div className="relative w-full min-h-screen overflow-hidden">
       {/* 🌿 Background Image */}
@@ -40,4 +43,4 @@ function HomePage() {
   );
 }
 
-export default HomePage
+export default HomePage;

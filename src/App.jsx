@@ -22,8 +22,8 @@ function App() {
   }
 
   return (
-    <HomePage 
-      userName={user?.name || user?.email || "friend"} 
+    <HomePage
+      userName={user?.name || user?.email || "friend"}
       onLogout={() => logout({ logoutParams: { returnTo: window.location.origin } })}
     />
   );
