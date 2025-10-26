@@ -37,7 +37,7 @@ function HomePage({ userName, onNavigate }) {
 
           {/* Title - Left Aligned */}
           <div className="absolute left-[90px] top-[70px] w-[500px] z-20">
-            <p className="font-['Poppins',sans-serif] font-bold text-[32px] leading-tight mb-2" style={{textAlign: 'left'}}>
+            <p className="font-unkempt-bold text-[32px] leading-tight mb-2" style={{textAlign: 'left'}}>
               Hello {userName?.split(" ")[0] || "Mysha"}, you're in your
             </p>
             <p className="font-unkempt-bold text-[48px] leading-tight" style={{textAlign: 'left', color: '#c57770'}}>
