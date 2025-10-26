@@ -1,67 +1,43 @@
 import React from 'react'
 
-// Figma asset URLs
-const imgHomePage = "https://www.figma.com/api/mcp/asset/a9c15f6e-7617-49ff-9189-de4819acab2b";
-const imgImg25951 = "https://www.figma.com/api/mcp/asset/a13ec45d-162d-4fd5-9da5-32b47a0e084a";
+const bgImage = "https://www.figma.com/api/mcp/asset/a9c15f6e-7617-49ff-9189-de4819acab2b"; // background
+const paperTexture = "https://www.figma.com/api/mcp/asset/a13ec45d-162d-4fd5-9da5-32b47a0e084a"; // notebook paper
 
 function HomePage() {
   return (
-    
-    <div className="bg-[#b5d96c] relative w-full min-h-screen flex flex-col" data-name="Home" data-node-id="13:15">
-      {/* Navigation Tabs */}
-      <div className="flex justify-center items-center pt-[53px] pb-4" data-node-id="1:2283">
-        <div className="flex gap-[18px] items-center">
-          <div className="bg-[rgba(217,217,217,0.62)] h-[44px] rounded-tl-[16px] rounded-tr-[16px] w-[169px]" data-node-id="1:2284" />
-          <div className="bg-[rgba(217,217,217,0.62)] h-[44px] rounded-tl-[16px] rounded-tr-[16px] w-[169px]" data-node-id="1:2296" />
-          <div className="bg-[rgba(217,217,217,0.62)] h-[44px] rounded-tl-[16px] rounded-tr-[16px] w-[169px]" data-node-id="1:2298" />
-          <div className="bg-[rgba(217,217,217,0.62)] h-[44px] rounded-tl-[16px] rounded-tr-[16px] w-[169px]" data-node-id="1:2300" />
-        </div>
-      </div>
+    <div className="relative w-full min-h-screen overflow-hidden">
+      {/* 🌿 Background Image */}
+      <img
+        src={bgImage}
+        alt="background"
+        className="absolute inset-0 w-full h-full object-cover"
+      />
 
-      {/* Main Content Area */}
-      <div className="flex-1 flex justify-center items-center px-4 py-8" data-name="HomePage" data-node-id="13:16">
-        {/* Background Image Container */}
-        <div className="absolute inset-0 w-full h-full">
-          <img 
-            alt="" 
-            className="w-full h-full object-cover" 
-            src={imgHomePage} 
+      {/* Content on top */}
+      <div className="relative z-10 flex flex-col items-center">
+        <TopBanner />
+
+        <div className="relative w-[900px] h-[640px] bg-[rgba(255,255,255,0.85)] rounded-[64px] shadow-[0_10px_0_1px_#5A5A5A] overflow-hidden flex flex-col justify-center items-center -mt-4">
+          {/* Paper Texture */}
+          <img
+            src={paperTexture}
+            alt="paper texture"
+            className="absolute inset-0 w-full h-full object-cover mix-blend-multiply rounded-[64px]"
           />
-        </div>
 
-        {/* Main Content Frame */}
-        <div className="relative w-full max-w-[897px] h-[650px] flex justify-center items-center">
-          {/* Background overlay frame */}
-          <div className="absolute inset-0 bg-[rgba(99,80,68,0.68)] rounded-[64px] shadow-[0px_10px_0px_1px_#4f564c]" data-node-id="13:17">
-            {/* Background image with blend mode */}
-            <div className="absolute inset-0 overflow-hidden rounded-[64px]">
-              <div className="absolute inset-0 mix-blend-luminosity">
-                <img 
-                  alt="" 
-                  className="w-full h-full object-cover mix-blend-overlay" 
-                  src={imgImg25951} 
-                />
-              </div>
-            </div>
-          </div>
-
-          {/* Text Content */}
-          <div className="relative z-10 p-8 text-center">
-            <div className="font-poppins-extrabold text-[64px] text-black leading-tight tracking-[-1.92px]" data-node-id="13:24">
-              <p className="mb-2">hello [name],</p>
-              <p className="mb-2">you're in your</p>
-              <p>
-                <span className="text-[#458a32]">follicular</span>
-                <span> phase!</span>
-              </p>
-            </div>
+          {/* Text */}
+          <div className="relative z-10 text-center">
+            <p className="font-poppins-extrabold text-[36px] text-[#2f2f2f] leading-tight tracking-[-1.92px]">
+              hello {userName?.split(" ")[0]?.toLowerCase() || "friend"},
+            </p>
+            <p className="font-poppins-extrabold text-[36px] text-[#2f2f2f] leading-tight tracking-[-1.62px]">
+              you’re in your follicular<span className="text-[#2f2f2f]"> phase!</span>
+            </p>
           </div>
         </div>
       </div>
     </div>
-
-    
-  )
+  );
 }
 
 export default HomePage

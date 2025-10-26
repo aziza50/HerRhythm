@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 
 const TopBanner = ({ onNavigate }) => {
-  const tabs = ['Home', 'Tips', 'Check-In', 'Calendar'];
+  const tabs = ['Home', 'Sync', 'Check-In', 'Calendar'];
   const [activeTab, setActiveTab] = useState('Home');
   const [disabled, setDisabled] = useState(false);
 
@@ -24,7 +24,7 @@ const TopBanner = ({ onNavigate }) => {
             onClick={() => handleClick(tab)}
             disabled={disabled}
             className={`
-              relative px-5 py-1 rounded-t-2xl font-semibold 
+              relative px-5 py-1 opacity-90 rounded-t-2xl font-semibold 
               text-[#4a3b2f] transition-all duration-200 
               bg-[#fffbe9] border-[#b5d96c] shadow-[0_-4px_6px_rgba(0,0,0,0.25)] border-b-4
               ${activeTab === tab 
