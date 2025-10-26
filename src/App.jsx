@@ -1,22 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import LoginPage from "./pages/LoginPage";
 import HomePage from "./pages/HomePage";
-import SignUpPage from "./pages/SignUpPage";
+import CheckIn from "./pages/CheckIn";
+import Profile from "./pages/Profile";
+import Sync from "./pages/Sync";
+import Calendar from "./pages/Calendar";
 
 function App() {
+  const [currentPage, setCurrentPage] = useState("Home");
   const { isAuthenticated, isLoading, user } = useAuth0();
   const [isNewUser, setIsNewUser] = useState(null);
   const [checkingUser, setCheckingUser] = useState(false);
 
   useEffect(() => {
-    console.log("🔥 useEffect running");
-    console.log("isAuthenticated:", isAuthenticated);
-    console.log("isLoading:", isLoading);
-    console.log("user:", user);
-    console.log("isNewUser:", isNewUser);
-    console.log("checkingUser:", checkingUser);
-
     // Only check user after Auth0 has finished loading AND user is authenticated
     if (
       !isLoading &&
@@ -74,15 +71,60 @@ function App() {
     return <LoginPage />;
   }
 
-  // Show signup page for new users
-  if (isNewUser === true) {
-    console.log("🎉 Showing SignUpPage");
-    return <SignUpPage />;
-  }
+  // Handle navigation
+  const handleNavigation = (page) => {
+    setCurrentPage(page);
+  };
 
-  // Show home page for existing users
-  console.log("Showing HomePage");
-  return <HomePage />;
+  // Render current page
+  const renderPage = () => {
+    switch (currentPage) {
+      case "Home":
+        return (
+          <HomePage
+            userName={user?.name || user?.email || "friend"}
+            onNavigate={handleNavigation}
+          />
+        );
+      case "Check-In":
+        return (
+          <CheckIn
+            userName={user?.name || user?.email || "friend"}
+            onNavigate={handleNavigation}
+          />
+        );
+      case "Profile":
+        return (
+          <Profile
+            userName={user?.name || user?.email || "friend"}
+            onNavigate={handleNavigation}
+          />
+        );
+      case "Sync":
+        return (
+          <Sync
+            userName={user?.name || user?.email || "friend"}
+            onNavigate={handleNavigation}
+          />
+        );
+      case "Calendar":
+        return (
+          <Calendar
+            userName={user?.name || user?.email || "friend"}
+            onNavigate={handleNavigation}
+          />
+        );
+      default:
+        return (
+          <HomePage
+            userName={user?.name || user?.email || "friend"}
+            onNavigate={handleNavigation}
+          />
+        );
+    }
+  };
+
+  return renderPage();
 }
 
 export default App;
