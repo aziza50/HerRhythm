@@ -52,8 +52,8 @@ function Calendar({ userName, onNavigate }) {
             className="absolute inset-0 w-full h-full object-cover mix-blend-multiply rounded-[64px]"
           />
 
-          <div className="relative z-10 text-center mb-6 mt-2">
-            <h1 className="font-unkempt-bold text-[39px] text-[#2f2f2f]">
+          <div className="relative z-10 text-center mb-8">
+            <h1 className="font-unkempt-bold text-[39px] text-[#2f2f2f] mb-2">
               Cycle Calendar
             </h1>
             <p className="font-unkempt-regular text-[18px] text-gray-600">{monthNames[currentMonth]} {currentYear}</p>

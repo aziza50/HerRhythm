@@ -35,16 +35,22 @@ function HomePage({ userName, onNavigate }) {
             className="absolute inset-0 w-full h-full object-cover mix-blend-multiply rounded-[64px]"
           />
 
+          {/* Title - Left Aligned */}
+          <div className="absolute left-[60px] top-[100px] w-[500px] z-20">
+            <p className="font-unkempt-bold text-[32px] leading-tight" style={{textAlign: 'left'}}>
+              Hello {userName?.split(" ")[0] || "Mysha"}, you're in your luteal phase.
+            </p>
+          </div>
+
+          {/* Image Placeholder - Right Side */}
+          <div className="absolute h-[80px] right-[60px] top-[90px] w-[120px] z-20">
+            <div className="w-full h-full bg-gradient-to-br from-pink-300 to-purple-400 rounded-xl flex items-center justify-center shadow-lg border-2 border-pink-200">
+              <span className="text-white font-bold text-2xl">🌙</span>
+            </div>
+          </div>
+
           {/* Figma Design Content - Positioned inside the main frame */}
           <div className="relative z-10 bg-[rgba(255,255,255,0)] opacity-90 overflow-clip rounded-[83px] size-full max-w-[785px] max-h-[468px]">
-            
-            {/* Welcome Message - Top Center */}
-            {/* TO ADJUST POSITION: Change 'top-[3px]' and 'left-[146px]' */}
-            <div className="absolute h-[47px] right-[265px] top-[3px] w-[292px]">
-              <p className="absolute font-unkempt-bold left-[146px] text-[39px] top-0 translate-x-[-50%]">
-                Welcome {userName?.split(" ")[0] || "Friend"}!
-              </p>
-            </div>
 
             {/* Left Side: Luteal Phase Sticky Note */}
             {/* TO ADJUST POSITION: Change 'left-[30px]' and 'top-[52px]' - Shifted another 10px left from 40px */}
@@ -106,9 +112,9 @@ function HomePage({ userName, onNavigate }) {
                 </div>
               </div>
 
-              {/* Right Side: Cycle Insights Sticky Note */}
-              {/* TO ADJUST POSITION: Change 'left-[390px]' and 'top-0' - Shifted another 10px left from 400px */}
-              <div className="absolute h-[468px] left-[390px] overflow-clip top-0 w-[350px]">
+            {/* Right Side: Cycle Insights Sticky Note */}
+            {/* TO ADJUST POSITION: Change 'left-[390px]' and 'top-0' - Shifted another 10px left from 400px */}
+            <div className="absolute h-[468px] left-[390px] overflow-clip top-0 w-[350px]">
                 
                 {/* Cycle Insights Sticky Note Background */}
                 {/* TO ADJUST POSITION: Change 'right-0' and 'top-[108px]' */}
