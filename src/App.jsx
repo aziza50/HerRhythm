@@ -1,35 +1,130 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState, useEffect } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
+import LoginPage from "./pages/LoginPage";
+import HomePage from "./pages/HomePage";
+import CheckIn from "./pages/CheckIn";
+import Profile from "./pages/Profile";
+import Sync from "./pages/Sync";
+import Calendar from "./pages/Calendar";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [currentPage, setCurrentPage] = useState("Home");
+  const { isAuthenticated, isLoading, user } = useAuth0();
+  const [isNewUser, setIsNewUser] = useState(null);
+  const [checkingUser, setCheckingUser] = useState(false);
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+  useEffect(() => {
+    // Only check user after Auth0 has finished loading AND user is authenticated
+    if (
+      !isLoading &&
+      isAuthenticated &&
+      user &&
+      isNewUser === null &&
+      !checkingUser
+    ) {
+      console.log("✅ Starting user check...");
+      setCheckingUser(true);
+
+      fetch(`http://localhost:5001/api/users/check?auth0Id=${user.sub}`)
+        .then((res) => {
+          console.log("📡 Response received, status:", res.status);
+          if (!res.ok) {
+            throw new Error(`HTTP error! status: ${res.status}`);
+          }
+          return res.json();
+        })
+        .then((data) => {
+          console.log("📦 Data received:", data);
+          const newUserValue = !data.exists;
+          console.log("🎯 Setting isNewUser to:", newUserValue);
+          setIsNewUser(newUserValue);
+          setCheckingUser(false);
+          console.log("✅ Done checking user");
+        })
+        .catch((err) => {
+          console.error("❌ API error:", err);
+          setIsNewUser(false);
+          setCheckingUser(false);
+        });
+    }
+  }, [isAuthenticated, isLoading, user, isNewUser, checkingUser]);
+
+  console.log("=== RENDER ===");
+  console.log("isNewUser:", isNewUser, "checkingUser:", checkingUser);
+
+  // Show loading while Auth0 is loading OR while we're checking the user
+  if (isLoading || checkingUser || (isAuthenticated && isNewUser === null)) {
+    console.log("Showing loading screen");
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-pink-100 to-purple-100">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-pink-500 mx-auto mb-4"></div>
+          <p className="text-gray-600 text-lg">Loading...</p>
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    );
+  }
+
+  // Show login page if not authenticated
+  if (!isAuthenticated) {
+    console.log("Showing LoginPage");
+    return <LoginPage />;
+  }
+
+  // Handle navigation
+  const handleNavigation = (page) => {
+    setCurrentPage(page);
+  };
+
+  // Render current page
+  const renderPage = () => {
+    switch (currentPage) {
+      case "Home":
+        return (
+          <HomePage
+            userName={user?.name || user?.email || "friend"}
+            onNavigate={handleNavigation}
+          />
+        );
+      case "Check-In":
+        return (
+          <CheckIn
+            userName={user?.name || user?.email || "friend"}
+            onNavigate={handleNavigation}
+          />
+        );
+      case "Profile":
+        return (
+          <Profile
+            userName={user?.name || user?.email || "friend"}
+            onNavigate={handleNavigation}
+          />
+        );
+      case "Sync":
+        return (
+          <Sync
+            userName={user?.name || user?.email || "friend"}
+            onNavigate={handleNavigation}
+          />
+        );
+      case "Calendar":
+        return (
+          <Calendar
+            userName={user?.name || user?.email || "friend"}
+            onNavigate={handleNavigation}
+          />
+        );
+      default:
+        return (
+          <HomePage
+            userName={user?.name || user?.email || "friend"}
+            onNavigate={handleNavigation}
+          />
+        );
+    }
+  };
+
+  return renderPage();
 }
 
-export default App
+export default App;
