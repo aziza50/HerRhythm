@@ -3,6 +3,9 @@ import { useAuth0 } from '@auth0/auth0-react';
 import LoginPage from './pages/LoginPage';
 import HomePage from './pages/HomePage';
 import CheckIn from './pages/CheckIn';
+import Profile from './pages/Profile';
+import Sync from './pages/Sync';
+import Calendar from './pages/Calendar';
 
 function App() {
   const { isAuthenticated, isLoading, logout, user } = useAuth0();
@@ -38,6 +41,21 @@ function App() {
         />;
       case 'Check-In':
         return <CheckIn 
+          userName={user?.name || user?.email || "friend"}
+          onNavigate={handleNavigation}
+        />;
+      case 'Profile':
+        return <Profile 
+          userName={user?.name || user?.email || "friend"}
+          onNavigate={handleNavigation}
+        />;
+      case 'Sync':
+        return <Sync 
+          userName={user?.name || user?.email || "friend"}
+          onNavigate={handleNavigation}
+        />;
+      case 'Calendar':
+        return <Calendar 
           userName={user?.name || user?.email || "friend"}
           onNavigate={handleNavigation}
         />;
