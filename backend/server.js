@@ -10,11 +10,12 @@ app.post("/api/users", async (req, res) => {
   const { auth0_id, name, weight, last_period_date, cycle_length } = req.body;
   try {
     const result = await pool.query(
-      `INSERT INTO users (auth0_id, name, weight, last_period_date)
-       VALUES ($1, $2, $3, $4)
-       ON CONFLICT (auth0_id)
-       DO UPDATE SET name = EXCLUDED.name, weight = EXCLUDED.weight, last_period_date = EXCLUDED.last_period_date
-       RETURNING *`,
+      `INSERT INTO users (auth0_id, name, weight, last_period_date, cycle_length)
+VALUES ($1, $2, $3, $4, $5)
+ON CONFLICT (auth0_id)
+DO UPDATE SET name = EXCLUDED.name, weight = EXCLUDED.weight, last_period_date = EXCLUDED.last_period_date, cycle_length = EXCLUDED.cycle_length
+RETURNING *;
+`,
       [auth0_id, name, weight, last_period_date, cycle_length]
     );
     res.json(result.rows[0]);
@@ -27,14 +28,19 @@ app.post("/api/users", async (req, res) => {
 app.get("/api/users/check", async (req, res) => {
   const { auth0Id } = req.query;
 
-  const user = await db.users.findOne({ where: { auth0Id } });
-  res.json({ exists: !!user });
+  const { rows } = await pool.query("SELECT * FROM users WHERE auth0_id = $1", [
+    auth0Id,
+  ]);
+  res.json({ exists: rows.length > 0 });
 });
 
 app.get("/api/user/", async (req, res) => {
   const { auth0Id } = req.query;
 
-  const user = await db.users.findOne({ where: { auth0Id } });
+  const { rows } = await pool.query("SELECT * FROM users WHERE auth0_id = $1", [
+    auth0Id,
+  ]);
+  const user = rows[0];
 
   if (!user) {
     return res.status(404).json({ error: "user not found!" });

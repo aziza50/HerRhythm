@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
-export default function SignUp() {
+
+function SignUpPage() {
   const { user, isAuthenticated } = useAuth0();
   const [weight, setWeight] = useState("");
   const [lastPeriodDate, setLastPeriodDate] = useState(null);
@@ -54,3 +55,4 @@ export default function SignUp() {
     </form>
   );
 }
+export default SignUpPage;
