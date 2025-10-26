@@ -14,6 +14,14 @@ function CheckIn({ userName, onNavigate }) {
   const [symptoms, setSymptoms] = useState([]);
   const [notes, setNotes] = useState("");
 
+  const moodOptions = [
+    { emoji: "😄", name: "excited" },
+    { emoji: "😊", name: "happy" },
+    { emoji: "😐", name: "calm" },
+    { emoji: "😞", name: "sad" },
+    { emoji: "😢", name: "anxious" },
+  ];
+
   const symptomOptions = ["Cramps", "Headache", "Bloating", "Fatigue", "Acne"];
 
   const toggleSymptom = (symptom) => {
@@ -59,26 +67,27 @@ function CheckIn({ userName, onNavigate }) {
             {/* Left Column: Mood, Energy, Motivation, Flow */}
             <div className="flex flex-col gap-8 w-1/2">
               {/* Mood */}
-              <div className="bg-white -rotate-1 shadow-[0_4px_10px_0_rgba(90,90,90,0.6)] p-2 flex flex-col items-center">
+              <div className="bg-white -rotate-1 shadow-[0_4px_10px_0_rgba(90,90,90,0.6)] p-2 flex flex-col items-center relative">
                 <div className="absolute -top-3 w-12 h-4 bg-[#f4e9d8] rotate-2 shadow-md"></div>
                 <h2 className="font-semibold">Mood</h2>
                 <div className="flex gap-4">
-                  {["😄", "😊", "😐", "😞", "😢"].map((emoji) => (
+                  {moodOptions.map(({ emoji, name }) => (
                     <button
-                      key={emoji}
-                      onClick={() => setMood(emoji)}
+                      key={name} // word tied to emoji
+                      title={name} // tooltip shows word on hover
+                      onClick={() => setMood(name)}
                       className={`text-2xl p-2 rounded-md ${
-                        mood === emoji ? "bg-pink-200" : ""
+                        mood === name ? "bg-pink-200" : ""
                       }`}
                     >
-                      {emoji}
+                      {emoji} {/* display only emoji */}
                     </button>
                   ))}
                 </div>
               </div>
 
               {/* Energy */}
-              <div className="bg-white rotate-1 shadow-[0_4px_10px_0_rgba(90,90,90,0.6)] p-4 flex flex-col items-center">
+              <div className="bg-white rotate-1 shadow-[0_4px_10px_0_rgba(90,90,90,0.6)] p-4 flex flex-col items-center relative">
                 <div className="absolute -top-3 w-12 h-4 bg-[#f4e9d8] rotate-1 shadow-md"></div>
                 <h2 className="font-semibold mb-2">Energy</h2>
                 <input
@@ -95,7 +104,7 @@ function CheckIn({ userName, onNavigate }) {
               </div>
 
               {/* Motivation */}
-              <div className="bg-white -rotate-1 shadow-[0_4px_10px_0_rgba(90,90,90,0.6)] p-4 flex flex-col items-center">
+              <div className="bg-white -rotate-1 shadow-[0_4px_10px_0_rgba(90,90,90,0.6)] p-4 flex flex-col items-center relative">
                 <div className="absolute -top-3 w-12 h-4 bg-[#f4e9d8] -rotate-1 shadow-md"></div>
                 <h2 className="font-semibold mb-2">Motivation</h2>
                 <input
@@ -112,7 +121,7 @@ function CheckIn({ userName, onNavigate }) {
               </div>
 
               {/* Cycle Flow */}
-              <div className="bg-white rotate-1 shadow-[0_4px_10px_0_rgba(90,90,90,0.6)] p-2 px-5 flex flex-col items-center">
+              <div className="bg-white rotate-1 shadow-[0_4px_10px_0_rgba(90,90,90,0.6)] p-2 px-5 flex flex-col items-center relative">
                 <div className="absolute -top-3 w-12 h-4 bg-[#f4e9d8] rotate-2 shadow-md"></div>
                 <h2 className="font-semibold mb-2">Cycle Flow</h2>
                 <div className="flex gap-2 justify-center flex-wrap pb-2">
@@ -140,7 +149,7 @@ function CheckIn({ userName, onNavigate }) {
             {/* Right Column: Symptoms & Notes */}
             <div className="flex flex-col gap-5 w-1/2">
               {/* Symptoms */}
-              <div className="bg-white rotate-1 shadow-[0_4px_10px_0_rgba(90,90,90,0.6)] p-4 flex flex-col items-center">
+              <div className="bg-white rotate-1 shadow-[0_4px_10px_0_rgba(90,90,90,0.6)] p-4 flex flex-col items-center relative">
                 <div className="absolute -top-3 w-12 h-4 bg-[#f4e9d8] rotate-2 shadow-md"></div>
                 <h2 className="font-semibold mb-2">Symptoms</h2>
                 <div className="flex gap-3 flex-wrap justify-center">
@@ -163,7 +172,7 @@ function CheckIn({ userName, onNavigate }) {
               </div>
 
               {/* Notes */}
-              <div className="bg-white -rotate-1 shadow-[0_4px_10px_0_rgba(90,90,90,0.6)] p-4 flex flex-col">
+              <div className="bg-white -rotate-1 shadow-[0_4px_10px_0_rgba(90,90,90,0.6)] p-4 flex flex-col relative">
                 <div className="absolute -top-3 w-12 h-4 bg-[#f4e9d8] rotate-1 shadow-md"></div>
                 <h2 className="font-semibold mb-2">Notes</h2>
                 <textarea
