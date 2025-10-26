@@ -6,7 +6,7 @@ const bgImage =
 const paperTexture =
   "https://www.figma.com/api/mcp/asset/a13ec45d-162d-4fd5-9da5-32b47a0e084a"; // notebook paper
 
-function CheckIn({ userName }) {
+function CheckIn({ userName, onNavigate }) {
   const [mood, setMood] = useState(null);
   const [energy, setEnergy] = useState(50);
   const [motivation, setMotivation] = useState(50);
@@ -39,7 +39,7 @@ function CheckIn({ userName }) {
       />
 
       <div className="relative z-10 flex flex-col items-center">
-        <TopBanner />
+        <TopBanner onNavigate={onNavigate} />
 
         <div className="relative w-[900px] min-h-[630px] bg-[rgba(255,255,255,0.85)] rounded-[64px] shadow-[0_10px_0_1px_#5A5A5A] overflow-hidden flex flex-col px-15 py-6 -mt-4 mb-8">
           <img

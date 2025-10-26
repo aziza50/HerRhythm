@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import LoginPage from './pages/LoginPage';
 import HomePage from './pages/HomePage';
+import CheckIn from './pages/CheckIn';
 
 function App() {
   const { isAuthenticated, isLoading, logout, user } = useAuth0();
+  const [currentPage, setCurrentPage] = useState('Home');
 
   if (isLoading) {
     return (
@@ -21,12 +23,33 @@ function App() {
     return <LoginPage />;
   }
 
-  return (
-    <HomePage
-      userName={user?.name || user?.email || "friend"}
-      onLogout={() => logout({ logoutParams: { returnTo: window.location.origin } })}
-    />
-  );
+  // Handle navigation
+  const handleNavigation = (page) => {
+    setCurrentPage(page);
+  };
+
+  // Render current page
+  const renderPage = () => {
+    switch (currentPage) {
+      case 'Home':
+        return <HomePage 
+          userName={user?.name || user?.email || "friend"}
+          onNavigate={handleNavigation}
+        />;
+      case 'Check-In':
+        return <CheckIn 
+          userName={user?.name || user?.email || "friend"}
+          onNavigate={handleNavigation}
+        />;
+      default:
+        return <HomePage 
+          userName={user?.name || user?.email || "friend"}
+          onNavigate={handleNavigation}
+        />;
+    }
+  };
+
+  return renderPage();
 }
 
 export default App;
