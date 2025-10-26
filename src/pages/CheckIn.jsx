@@ -31,7 +31,6 @@ function CheckIn({ userName }) {
 
   return (
     <div className="relative w-full min-h-screen overflow-hidden">
-      {/* Background Image */}
       <img
         src={bgImage}
         alt="background"
@@ -42,14 +41,12 @@ function CheckIn({ userName }) {
         <TopBanner />
 
         <div className="relative w-[900px] min-h-[630px] bg-[rgba(255,255,255,0.85)] rounded-[64px] shadow-[0_10px_0_1px_#5A5A5A] overflow-hidden flex flex-col px-15 py-6 -mt-4 mb-8">
-          {/* Paper Texture */}
           <img
             src={paperTexture}
             alt="paper texture"
             className="absolute inset-0 w-full h-full object-cover mix-blend-multiply rounded-[64px]"
           />
 
-          {/* Title */}
           <div className="relative z-10 text-center mb-6 mt-2">
             <h1 className="font-poppins-extrabold text-3xl text-[#2f2f2f]">
               how are you feeling today?
@@ -57,7 +54,6 @@ function CheckIn({ userName }) {
             <p className="text-gray-600">{today}</p>
           </div>
 
-          {/* Main Content Grid */}
           <div className="relative z-10 flex gap-15">
             {/* Left Column: Mood, Energy, Motivation */}
             <div className="flex flex-col gap-10 w-1/2">
@@ -91,9 +87,9 @@ function CheckIn({ userName }) {
                   value={energy}
                   onChange={(e) => setEnergy(e.target.value)}
                     className="w-full h-2 rounded-lg appearance-none bg-pink-200 accent-pink-500"
-  style={{
-    accentColor: "#f687b3", // pink for modern browsers
-  }}
+                    style={{
+                    accentColor: "#f687b3", // pink for modern browsers
+                 }}
                 />
               </div>
 

@@ -39,7 +39,6 @@ const TopBanner = ({ onNavigate }) => {
         ))}
       </nav>
 
-      {/* Profile Tab (separated on the right like a lil tag!) */}
       <div className="absolute right-6 top-4">
         <button
           onClick={() => handleClick('Profile')}
