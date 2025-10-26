@@ -47,8 +47,8 @@ function HomePage({ userName, onNavigate }) {
             </div>
 
             {/* Left Side: Luteal Phase Sticky Note */}
-            {/* TO ADJUST POSITION: Change 'left-[81px]' and 'top-[52px]' - Shifted 10% left from 90px */}
-            <div className="absolute h-[468px] left-[81px] top-[52px] w-[785px]">
+            {/* TO ADJUST POSITION: Change 'left-[73px]' and 'top-[52px]' - Shifted another 10% left from 81px */}
+            <div className="absolute h-[468px] left-[73px] top-[52px] w-[785px]">
               <div className="absolute content-stretch flex h-[366px] items-start left-0 overflow-clip top-[51px] w-[364px]">
                 
                 {/* Luteal Phase Content Container */}
@@ -107,8 +107,8 @@ function HomePage({ userName, onNavigate }) {
               </div>
 
               {/* Right Side: Cycle Insights Sticky Note */}
-              {/* TO ADJUST POSITION: Change 'left-[205px]' and 'top-0' - Shifted 10% left from 228px */}
-              <div className="absolute h-[468px] left-[205px] overflow-clip top-0 w-[557px]">
+              {/* TO ADJUST POSITION: Change 'left-[185px]' and 'top-0' - Shifted another 10% left from 205px */}
+              <div className="absolute h-[468px] left-[185px] overflow-clip top-0 w-[557px]">
                 
                 {/* Cycle Insights Sticky Note Background */}
                 {/* TO ADJUST POSITION: Change 'right-0' and 'top-[108px]' */}
